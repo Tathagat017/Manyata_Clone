@@ -2,6 +2,7 @@
 // 1.Password is 8-16 letters
 // 2.Password has atleast 1 uppercase , 1 lowercase, 1 number and 1 symbol(@,%,#,$,%,&,*,-")
 
+// returns true if condition are met else false
 export default function validPassword(A) {
   A = A.split("");
   let n = A.length;
@@ -60,8 +61,8 @@ export default function validPassword(A) {
   }
 
   if (flag1 && flag2 && flag3 && flag4) {
-    return 1;
+    return true;
   } else {
-    return 0;
+    return false;
   }
 }
