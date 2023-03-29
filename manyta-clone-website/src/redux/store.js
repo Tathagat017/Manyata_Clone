@@ -4,7 +4,8 @@ import { reducer as AdminReducer } from "./AdminReducer/reducer";
 // import {reducer as CartReducer} from "./CartReducer/reducer";
 // import {reducer as OrderPlacedReducer} from "./OrderPlacedReducer/reducer";
 // import {reducer as ProductReducer} from "./ProductReducer/reducer";
-import { thunk } from "redux-thunk";
+
+import thunk from "redux-thunk";
 
 const rootereducer = combineReducers({
   AdminReducer,
