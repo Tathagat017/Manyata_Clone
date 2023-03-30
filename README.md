@@ -4,6 +4,16 @@ A clone of Myntra website
 
 Already in package.json-- just npm i
 
+
+Work done : API deployed - products and user key , NavBar Created, Admin Panel started, Login form created , OTP authentication drafted , All routes and private route created
+
+
+
+
+
+
+
+
 "@chakra-ui/react": "^2.5.4",
 "@emotion/react": "^11.10.6",
 "@emotion/styled": "^11.10.6",
