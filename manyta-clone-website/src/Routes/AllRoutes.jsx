@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./../Pages/Home/HomePage";
-import { LoginPage } from "./../Pages/Login/Login";
+
 import { CartPage } from "./../Pages/Purchase/CartPage";
 import { WishListPage } from "./../Pages/Purchase/Wishlist";
 import PrivateRoute from "./ProtectedRoute";
 import { SingleProductPage } from "./../Pages/Product/SingleProductPage";
 import { AdminPage } from "./../Pages/Admin/Admin";
 import { OrderPlacedPage } from "./../Pages/Order/PlacedOrder";
+import { LoginPage } from "../Pages/Login/LoginPage";
 export const AllRoutes = () => {
   return (
     <Routes>
