@@ -20,7 +20,7 @@ const config = {
   appId: "1:817642194951:web:8f2b6068c1a277a60002a2",
   measurementId: "G-XW2X9R0VF4",
 };
-
+//component is realtime with 50 fethces for otp authentication
 const app = initializeApp(config);
 
 const Wrapper = styled.div`

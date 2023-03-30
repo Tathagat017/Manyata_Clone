@@ -1,7 +1,6 @@
 // function takes a string and checks if :
 // 1.Password is 8-16 letters
 // 2.Password has atleast 1 uppercase , 1 lowercase, 1 number and 1 symbol(@,%,#,$,%,&,*,-")
-
 // returns true if condition are met else false
 export default function validPassword(A) {
   A = A.split("");
