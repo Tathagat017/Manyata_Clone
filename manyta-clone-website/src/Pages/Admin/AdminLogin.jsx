@@ -11,10 +11,12 @@ import {
     Image,Box
   } from '@chakra-ui/react';
   import React from 'react';
-  import { login } from './api';
+//   import { login } from './api';
   import { useNavigate } from 'react-router-dom';
-  import styles from "./adstyles.module.css"
-  export default function SplitScreen() {
+import styles from "../../Components/AdminPageComponents/Styles/AdminStyles.module.css"
+
+
+  export function AdminLogin() {
     const navigate=useNavigate();
 const [log,setlog]=React.useState({"email":"","password":""});
 
@@ -24,19 +26,19 @@ setlog(log);
 }
 const handlesubmit=async()=>{
 console.log(log);
-  let x=await login(log);
-  console.log(x);
-  // settoken(x);
-  if(x){
-    navigate("/adminallprod")
-  }
+//   let x=await login(log);
+//   console.log(x);
+//   // settoken(x);
+//   if(x){
+//     navigate("/adminallprod")
+//   }
 }
 
 
     return (
       <Box minH={'96vh'} className={styles.maindiv1}>
         <div className={styles.maindiv2}  p={8} flex={1} align={'center'} justify={'center'}>
-        <Image className={styles.imagelogo} src={'https://thumbs2.imgbox.com/31/49/k3GMkSl2_t.png'} alt={'memo'}/>
+        <Image className={styles.imagelogo} src={'./Logo.png'} alt={'memo'}/>
           <Stack border={'0px solid red'} spacing={4} w={'full'} maxW={'md'}>
             <Heading fontSize={'2xl'} justify={'left'} align={'left'}>Sign in as Admin</Heading>
             <form onSubmit={(e)=>e.preventDefault()}>
