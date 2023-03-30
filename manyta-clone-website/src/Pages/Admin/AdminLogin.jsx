@@ -11,12 +11,15 @@ import {
     Image,Box
   } from '@chakra-ui/react';
   import React from 'react';
-//   import { login } from './api';
+   import { getlogin } from '../../redux/AdminReducer/Action'
   import { useNavigate } from 'react-router-dom';
+  import { useSelector,useDispatch } from 'react-redux';
 import styles from "../../Components/AdminPageComponents/Styles/AdminStyles.module.css"
 
 
   export function AdminLogin() {
+    const {token,isauth}=useSelector((store)=>store.AdminReducer);
+    const dispatch=useDispatch();
     const navigate=useNavigate();
 const [log,setlog]=React.useState({"email":"","password":""});
 
@@ -24,14 +27,10 @@ const handlechange=(e)=>{
 log[e.target.name]=e.target.value;
 setlog(log);
 }
-const handlesubmit=async()=>{
+const handlesubmit=()=>{
 console.log(log);
-//   let x=await login(log);
-//   console.log(x);
-//   // settoken(x);
-//   if(x){
-//     navigate("/adminallprod")
-//   }
+ dispatch(getlogin(log))
+.then((res)=>{if(res.payload){navigate("/adminhome")}else{console.log(isauth,res)}})
 }
 
 
