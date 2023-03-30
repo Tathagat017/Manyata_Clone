@@ -88,9 +88,9 @@ const TableData = ({id,brand,description,size,newTag,discountedPrice,discount,ge
     <Td>{description}</Td>
    
     <Td>{discountedPrice}</Td>
-    <Td>{discount}</Td>
-    <Td>{category}</Td>
-    {/* <Td>{image}</Td> */}
+    {/* <Td>{discount}</Td> */}
+    <Td>{gender}</Td>
+    <Td><img width={'50%'} src={image} alt="" /></Td>
     <Td>
     <Button onClick={ondeleteopen}>Delete</Button>
     </Td>

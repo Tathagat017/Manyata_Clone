@@ -32,9 +32,9 @@ dispatch(getdata())
                   
 
                   <Th>Price</Th>
-                  <Th>Discount</Th>
-                  <Th>Gender</Th>
-                  {/* <Th>Image</Th> */}
+                  {/* <Th>Discount</Th> */}
+                  <Th>Category</Th>
+                  <Th>Image</Th>
                   <Th>Delete</Th>
                   <Th>Update</Th>
                 </Tr>
