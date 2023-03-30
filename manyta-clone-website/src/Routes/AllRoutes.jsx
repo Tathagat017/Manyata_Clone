@@ -5,7 +5,8 @@ import { CartPage } from "./../Pages/Purchase/CartPage";
 import { WishListPage } from "./../Pages/Purchase/Wishlist";
 import PrivateRoute from "./ProtectedRoute";
 import { SingleProductPage } from "./../Pages/Product/SingleProductPage";
-import { AdminPage } from "./../Pages/Admin/Admin";
+import { AdminLogin } from "../Pages/Admin/AdminLogin";
+import { AdminHome } from "../Pages/Admin/AdminHome";
 import { OrderPlacedPage } from "./../Pages/Order/PlacedOrder";
 import { LoginPage } from "../Pages/Login/LoginPage";
 export const AllRoutes = () => {
@@ -46,7 +47,8 @@ export const AllRoutes = () => {
           </PrivateRoute>
         }
       ></Route>
-      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/adminlogin" element={<AdminLogin />} />
+      <Route path="/adminhome" element={<AdminHome />} />
       <Route path="*" element={<h1>404 Page Not Found</h1>} />
     </Routes>
   );
