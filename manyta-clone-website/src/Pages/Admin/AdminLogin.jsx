@@ -47,7 +47,7 @@ export function AdminLogin() {
         align={"center"}
         justify={"center"}
       >
-        <Image className={styles.imagelogo} src={"./Logo.png"} alt={"memo"} />
+        <Image className={styles.imagelogo} src={"./Logo.jpg"} alt={"memo"} />
         <Stack border={"0px solid red"} spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"} justify={"left"} align={"left"}>
             Sign in as Admin

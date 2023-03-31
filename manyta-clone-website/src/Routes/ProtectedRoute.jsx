@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  //const { isAuth } = useSelector((state) => state.AuthReducer);
-  const isAuth = true;
+  const { isAuth } = useSelector((state) => state.AuthReducer);
+
   const location = useLocation();
 
   console.log(location);

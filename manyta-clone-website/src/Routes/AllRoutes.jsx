@@ -9,6 +9,8 @@ import { AdminLogin } from "../Pages/Admin/AdminLogin";
 import { AdminHome } from "../Pages/Admin/AdminHome";
 import { OrderPlacedPage } from "./../Pages/Order/PlacedOrder";
 import { LoginPage } from "../Pages/Login/LoginPage";
+import { ErrorPage } from "../Pages/Login/ErrorPage";
+import { ProductsPage } from "../Pages/Product/ProductPage";
 export const AllRoutes = () => {
   return (
     <Routes>
@@ -47,6 +49,9 @@ export const AllRoutes = () => {
           </PrivateRoute>
         }
       ></Route>
+
+      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/error" element={<ErrorPage />} />
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/adminhome" element={<AdminHome />} />
       <Route path="*" element={<h1>404 Page Not Found</h1>} />
