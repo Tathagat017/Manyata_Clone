@@ -1,5 +1,5 @@
 import axios from "axios";
-import { deletedatasuccess, updatedatasuccess,adddatasuccess,datasuccess,failure,request,loginsuccess} from "./ActionTypes";
+import { deletedatasuccess, updatedatasuccess,adddatasuccess,datasinglesuccess,datasuccess,failure,request,loginsuccess} from "./ActionTypes";
 
 export const actionrequest=()=>{
     return{type:request}
@@ -7,8 +7,11 @@ export const actionrequest=()=>{
 export const actionloginsuccess=(payload)=>{
     return{type:loginsuccess,payload}
 }
-export const actiondatasuccess=(payload)=>{
-    return{type:datasuccess,payload}
+export const actiondatasuccess=(payload,payload1)=>{
+    return{type:datasuccess,payload,payload1}
+} 
+export const actiondatasinglesuccess=(payload)=>{
+    return{type:datasinglesuccess,payload}
 } 
 export const actiondeletesuccess=()=>{
     return{type:deletedatasuccess}
@@ -31,30 +34,40 @@ return axios.post(`https://reqres.in/api/login`,obj)
 .catch((er)=>dispatch(actionfailure()))
 }
 
-export const getdata=()=>(dispatch)=>{
+export const getdata=(page)=>(dispatch)=>{
     dispatch(actionrequest())
-return axios.get(`https://manyta-clone-of-myntra.cyclic.app/products?_page=55&_limit=10`)
-.then((res)=>dispatch(actiondatasuccess(res.data)))
+return axios.get(`https://manyta-clone-of-myntra.cyclic.app/products?_page=${page}&_limit=60`)
+.then((res)=>dispatch(actiondatasuccess(res.data,res.headers["x-total-count"])))
 .catch((er)=>dispatch(actionfailure()))
 }
 
+export const getdataone=(id)=>(dispatch)=>{
+    console.log(id);
+    // dispatch(actionrequest())
+return axios.get(`https://manyta-clone-of-myntra.cyclic.app/products/${id}`)
+.then((res)=>dispatch(actiondatasinglesuccess(res.data)))
+.catch((er)=>dispatch(actionfailure()))
+}
+
+
 export const adddata=(obj)=>(dispatch)=>{
     dispatch(actionrequest())
-return axios.post(`https://reqres.in/api/login`,obj)
+return axios.post(`https://manyta-clone-of-myntra.cyclic.app/products`,obj)
 .then((res)=>dispatch(actionadddatasuccess()))
 .catch((er)=>dispatch(actionfailure()))
 }
 
 export const deletedata=(id)=>(dispatch)=>{
     dispatch(actionrequest())
-return axios.delete(`/${id}`)
+return axios.delete(`https://manyta-clone-of-myntra.cyclic.app/products/${id}`)
 .then((res)=>dispatch(actiondeletesuccess()))
 .catch((er)=>dispatch(actionfailure()))
 }
 
 export const updatedata=(id,obj)=>(dispatch)=>{
+    console.log(id,obj);
     dispatch(actionrequest())
-return axios.patch(`/${id}`,obj)
+return axios.patch(`https://manyta-clone-of-myntra.cyclic.app/products/${id}`,obj)
 .then((res)=>dispatch(actionupdatedatasuccess()))
 .catch((er)=>dispatch(actionfailure()))
 }

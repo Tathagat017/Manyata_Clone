@@ -41,9 +41,9 @@ export default function Nav() {
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Flex gap={'10rem'} justifyContent={'space-evenly'}>
-           <Link style={{ textDecoration: 'none' }} to={'/adminhome'}><Text  fontSize={'2xl'} fontWeight={'bold'} marginRight={'3rem'}>Home</Text></Link> 
-           <Link style={{ textDecoration: 'none' }} to={'/adminfunds'}><Text fontSize={'2xl'} fontWeight={'bold'}>Funds</Text></Link>
-           <Link style={{ textDecoration: 'none' }} to={'/adminaddproducts'}><Text fontSize={'2xl'} fontWeight={'bold'}>Add Products</Text></Link> 
+           <Link style={{ textDecoration: 'none' }} href={'/adminhome'}><Text  fontSize={'2xl'} fontWeight={'bold'} marginRight={'3rem'}>Home</Text></Link> 
+           <Link style={{ textDecoration: 'none' }} href={'/adminfundsorders'}><Text fontSize={'2xl'} fontWeight={'bold'}>Funds</Text></Link>
+           <Link style={{ textDecoration: 'none' }} href={'/adminaddproducts'}><Text fontSize={'2xl'} fontWeight={'bold'}>Add Products</Text></Link> 
           </Flex>
 
           <Flex alignItems={'center'}>
@@ -61,7 +61,7 @@ export default function Nav() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={'./Logo.jpg'}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -69,7 +69,7 @@ export default function Nav() {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={'./Logo.jpg'}
                     />
                   </Center>
                   <br />

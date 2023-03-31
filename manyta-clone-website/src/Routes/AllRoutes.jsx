@@ -9,6 +9,8 @@ import { AdminLogin } from "../Pages/Admin/AdminLogin";
 import { AdminHome } from "../Pages/Admin/AdminHome";
 import { OrderPlacedPage } from "./../Pages/Order/PlacedOrder";
 import { LoginPage } from "../Pages/Login/LoginPage";
+import AdminAdd from "../Pages/Admin/AdminAdd";
+import AdminFunds from "../Pages/Admin/AdminFundsOrders";
 export const AllRoutes = () => {
   return (
     <Routes>
@@ -49,6 +51,8 @@ export const AllRoutes = () => {
       ></Route>
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/adminhome" element={<AdminHome />} />
+      <Route path="/adminaddproducts" element={<AdminAdd />} />
+      <Route path="/adminfundsorders" element={<AdminFunds />} />
       <Route path="*" element={<h1>404 Page Not Found</h1>} />
     </Routes>
   );

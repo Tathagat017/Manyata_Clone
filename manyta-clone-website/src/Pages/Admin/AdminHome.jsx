@@ -1,53 +1,101 @@
-import { Box,Flex,Heading,Table,TableCaption,TableContainer,Tbody,Td,Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box,Flex,Heading,Table,TableCaption,TableContainer,Tbody,Td,Text, Th, Thead, Tr,Input, useDisclosure ,Button, IconButton, Stack} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { getdata } from "../../redux/AdminReducer/Action";
+import { IoIosArrowBack,IoIosArrowForward } from 'react-icons/io';
+import { getdata, getdataone, updatedata } from "../../redux/AdminReducer/Action";
 import TableData from "../../Components/AdminPageComponents/TableData";
 import Nav from "../../Components/AdminPageComponents/AdminNavbar";
+
+const initialstate={brand:"",itemType:"",description:"",size:"",discountedPrice:"",discount:"",gender:"",image:""}
+
 export const AdminHome = () => {
   const [data,setdata]=React.useState([]);
-  const {products}=useSelector((store)=>store.AdminReducer);
+  const [page,setpage]=React.useState(1);
+  const [trigger,setrigger]=React.useState(true);
+  const {products,singledata,isrequest,totallength}=useSelector((store)=>store.AdminReducer);
   const dispatch=useDispatch();
+
 React.useEffect(()=>{
-dispatch(getdata())
+dispatch(getdata(page))
  .then((res)=>setdata(res.payload))
-},[])
-// console.log(products)
+},[trigger,page])
+console.log(data)
+
+
 
   return (
-  <><Nav/>
+    
+
+  <>
+   <Nav/>
+  {/* //pagination */}
+  <Stack >
+        <Button
+         leftIcon={<IoIosArrowBack />} 
+         colorScheme='pink' 
+         variant='solid'
+         position="absolute"
+         left={'22%'}
+         top={'60%'}
+         backgroundColor={'red.800'}
+         isDisabled={page===1}
+         onClick={()=>setpage(prev=>prev-1)}
+        transform={'translate(0%, -50%)'}
+        zIndex={2}
+         ></Button>
+    
+      <Button 
+      rightIcon={<IoIosArrowForward/>} 
+      colorScheme='pink' 
+      variant='solid'
+      position="absolute"
+      backgroundColor={'red.800'}
+      right={'0%'}
+      top={"60%"}
+       isDisabled={page===Math.ceil(totallength/60)}
+      onClick={()=>setpage(prev=>prev+1)}
+     transform={'translate(0%, -50%)'}
+     zIndex={2}
+      >{page}</Button>
+      
+             </Stack>
+  {/* //pagination */}
+ 
   <Box>
     <Box w={'100%'}>
       <Flex>
-        <Box w={'25%'}>Filters</Box>
-        <Box w={'70%'} h={'600px'} overflowX={'scroll'} overflowY={'scroll'}>
+        <Box w={'22%'}>Filters</Box>
+        <Box w={'78%'} h={'600px'} overflowX={'scroll'} overflowY={'scroll'}>
           <Heading>All Products</Heading>
-          <TableContainer>
+        {isrequest?<img width={'80%'} style={{margin:"auto"}} src="https://media0.giphy.com/media/MydKZ8HdiPWALc0Lqf/giphy.gif?cid=ecf05e473acjoco3l6kqx9l638wr8ednj0d9vjil79hlqfni&rid=giphy.gif&ct=g" alt="" />:  <TableContainer>
             <Table   size={'sm'} variant='striped' colorScheme='teal'>
-              <TableCaption placement="top">Products in inverntory</TableCaption>
+              <TableCaption placement="top">Products in inverntory
+             
+              </TableCaption>
               <Thead>
                 <Tr>
                   <Th>Brand</Th>
                   <Th>Description</Th>
-                  
+                 <Th>Price</Th>
+                 <Th>Category</Th>
+                 <Th>Image
+                 
 
-                  <Th>Price</Th>
-                  <Th>Discount</Th>
-                  <Th>Gender</Th>
-                  {/* <Th>Image</Th> */}
+                 </Th>
                   <Th>Delete</Th>
                   <Th>Update</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 
-                  {data.length>0&&products.map((el)=>(
-                    <TableData key={el.id} {...el}dispatch={dispatch}/>
+                  {products===undefined?<Tr><Td>...loading</Td></Tr>:products.reverse().map((el)=>(
+                    <TableData key={el.id} {...el} trigger={trigger} setrigger={setrigger} />
                   ))}
                 
               </Tbody>
             </Table>
-          </TableContainer>
+          </TableContainer>}
+        
         </Box>
         {/* <Box w={'25%'}>Funds</Box> */}
       </Flex>
