@@ -1,6 +1,7 @@
 import { Heading, Text, Flex, Link, Grid, Image, Box } from "@chakra-ui/react";
 import React from "react";
 import Footer from "../../Components/Footer";
+import Caraousel from "../../Components/HomePageComponents/Caraousel";
 // import image1 from "../Images/"
 import Navbar from "./../../Components/NavBar";
 
@@ -8,8 +9,9 @@ export const HomePage = () => {
   return (
     <div>
       <Navbar />
+      <Caraousel/>
       <Heading
-        size="4xl"
+        size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -18,7 +20,7 @@ export const HomePage = () => {
       >
         DEAL OF THE DAY
       </Heading>
-      <Grid templateColumns={"repeat(6,1fr)"} mt="4rem">
+      <Grid templateColumns={{base:"repeat(2,1fr)",md:"repeat(3,1fr)",lg:"repeat(6,1fr)"}} mt="4rem">
         <Box>
           <Image
             src="https://assets.myntassets.com/f_webp,w_98,c_limit,fl_progressive,dpr_2.0/assets/images/2022/5/4/97d2ea83-5d2e-4c5f-9fed-1ebe30d0fde51651645841750-Under----399.jpg"
@@ -50,7 +52,7 @@ export const HomePage = () => {
 
       {/* ///////////////// */}
       <Heading
-        size="4xl"
+       size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -59,7 +61,7 @@ export const HomePage = () => {
       >
         TOP PICKS
       </Heading>
-      <Grid templateColumns={"repeat(4,1fr)"}>
+      <Grid templateColumns={{base:"repeat(2,1fr)",lg:"repeat(4,1fr)"}}>
         <Box>
           <Image
             src="https://assets.myntassets.com/f_webp,w_140,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/23/062cea23-9a6a-44b9-bdd4-87cae6a462311645602543339-Kurta-sets.jpg"
@@ -90,7 +92,7 @@ export const HomePage = () => {
         </Box>
       </Grid>
       <Heading
-        size="4xl"
+        size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -99,7 +101,7 @@ export const HomePage = () => {
       >
         CATEGORIES TO BAG
       </Heading>
-      <Grid templateColumns={"repeat(5,1fr)"}>
+      <Grid templateColumns={{base:"repeat(2,1fr)",md:"repeat(3,1fr)",lg:"repeat(5,1fr)"}}>
         <Box>
           <Image src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/23/aa4658b5-d723-4652-9ea1-00456b355c3a1645602467046-Kurta-Sets.jpg"></Image>
         </Box>
@@ -132,7 +134,7 @@ export const HomePage = () => {
         </Box>
       </Grid>
       <Heading
-        size="4xl"
+       size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -141,7 +143,7 @@ export const HomePage = () => {
       >
         DEALS ON TOP BRANDS
       </Heading>
-      <Grid templateColumns={"repeat(5,1fr)"} mt="4rem">
+      <Grid templateColumns={{base:"repeat(3,1fr)",lg:"repeat(5,1fr)"}} mt="4rem">
         <Box>
           <Image
             src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/26/1aaf5e6a-2978-4ed8-9634-1559f530d73b1645860227457-SS22-BestOfBrands-H_M.jpg"
@@ -162,7 +164,7 @@ export const HomePage = () => {
         </Box>
       </Grid>
       <Heading
-        size="4xl"
+       size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -171,7 +173,7 @@ export const HomePage = () => {
       >
         GIFTING CARDS
       </Heading>
-      <Grid templateColumns={"repeat(5,1fr)"} mt="4rem" cursor={"pointer"}>
+      <Grid templateColumns={{base:"repeat(2,1fr)",lg:"repeat(4,1fr)"}} mt="4rem" cursor={"pointer"}>
         <Box>
           <Image
             w={"315px"}
@@ -199,7 +201,7 @@ export const HomePage = () => {
         </Box>
       </Grid>
       <Heading
-        size="4xl"
+        size="lg"
         color={"#413543"}
         textAlign="left"
         ml={"2rem"}
@@ -208,7 +210,7 @@ export const HomePage = () => {
       >
         BEST OF MYNTRA EXCLUSIVE BRANDS
       </Heading>
-      <Grid templateColumns={"repeat(6,1fr)"} mt="4rem">
+      <Grid templateColumns={{base:"repeat(2,1fr)",md:"repeat(3,1fr)",lg:"repeat(6,1fr)"}} mt="4rem">
         <Box>
           <Image src="https://assets.myntassets.com/f_webp,w_98,c_limit,fl_progressive,dpr_2.0/assets/images/2022/5/3/0070e6d7-9d06-49c8-b4f4-135ff74e2d6a1651582325724-Dresses--3-.jpg" />
         </Box>

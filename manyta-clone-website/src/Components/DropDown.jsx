@@ -1,8 +1,9 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
+import styled from "styled-components";
 const DropDown = ({ title, color }) => {
   return (
-    <div>
+    <DIV>
       <div className="dropdown">
         <button className="dropbtn">{title}</button>
         <div className="dropdown-content">
@@ -208,8 +209,77 @@ const DropDown = ({ title, color }) => {
           </div>
         </div>
       </div>
-    </div>
+    </DIV>
   );
 };
 
 export default DropDown;
+
+const DIV=styled.div`
+    .dropbtn {
+  background-color: white;
+  color: black;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  /* border: 1px solid red; */
+  font-weight: 650;
+  font-size: small;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 960px;
+  padding: 30px 20px;
+  /* height: 400px; */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  /* padding: 12px 16px; */
+  padding: 3px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  margin-left: 10px;
+  font-size: small;
+  z-index: 2;
+  /* border:1px solid red; */
+}
+
+.dropdown-content b {
+  padding: 3px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  margin-left: 10px;
+  font-size: small;
+}
+
+.dropdown-content a:hover {
+  font-weight: 700;
+  /* z-index: 2; */
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  /* display: block; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 2;
+}
+
+`
