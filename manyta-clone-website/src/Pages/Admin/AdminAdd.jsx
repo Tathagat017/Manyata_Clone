@@ -76,6 +76,7 @@ const AdminAdd = () => {
             to your database <Link color={'blue.400'}></Link> ✌️
           </Text>
         </Stack>
+        
         <Box
           rounded={'lg'}
            bg={useColorModeValue('white', 'gray.700')}

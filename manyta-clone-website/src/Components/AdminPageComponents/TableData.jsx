@@ -141,6 +141,7 @@ const handlechange=(e)=>{
         <Td>
           <Button onClick={ondeleteopen}>Delete</Button>
         </Td>
+        
         <Td>
           <Button onClick={()=>{
             dispatch(getdataone(id))
