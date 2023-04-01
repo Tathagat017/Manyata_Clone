@@ -10,10 +10,11 @@ import {
   BsFillCartFill,
   BsFillStarFill,
 } from "react-icons/bs";
-
+import { Box } from "@chakra-ui/react";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 const Main = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap")
-    width: 20vw;
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  width: 17vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,54 +103,62 @@ const Main = styled.div`
 
 export const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-
+  const { products, isLoading, isError } = useSelector(
+    (state) => state.ProductReducer
+  );
   //   const handleCart = (product) => {
   //     dispatch(addToCart(product));
   //   };
+  if (isError) return <Box children="error" />;
   return (
-    <Main>
-      <div className="Hover">
-        <div className="image-wrapper">
-          <div className="rating">
-            <BsFillStarFill style={{ color: "lightseagreen" }} />
-            {"  "}
-            <b>
-              &nbsp;
-              {product.rating} | {product.rating_Count}
-            </b>
+    <Box>
+      <Main>
+        <div className="Hover">
+          <div className="image-wrapper">
+            <div className="rating">
+              <BsFillStarFill style={{ color: "lightseagreen" }} />
+              {"  "}
+              <b>
+                &nbsp;
+                {product.rating} | {product.rating_Count}
+              </b>
+            </div>
+            <img src={product.image} className="product-image"></img>
           </div>
-          <img src={product.image} className="product-image"></img>
-        </div>
-        {/* <h3 className="product-title">{product.title}</h3> */}
-        <p className="product-letter">
-          <b>{product.brand}</b>
-        </p>
-        <div className="product-pricing">
-          <p className="product-letter orignal">
-            <span style={{ color: "red", textDecoration: "line-through" }}>
-              <span style={{ color: "#535665" }}>{product.originalPrice}</span>-
-            </span>
+          {/* <h3 className="product-title">{product.title}</h3> */}
+          <p className="product-letter">
+            <b>{product.brand}</b>
           </p>
-          <p className="product-discount">{product.discount}</p>
+          <div className="product-pricing">
+            <p className="product-letter orignal">
+              <span style={{ color: "red", textDecoration: "line-through" }}>
+                <span style={{ color: "#535665" }}>
+                  {product.originalPrice}
+                </span>
+                -
+              </span>
+            </p>
+            <p className="product-discount">{product.discount}</p>
+          </div>
+          <p className="product-letter price">
+            <b>{product.discountedPrice}</b>
+          </p>
+          {/* <p>{product.rating}</p> */}
+          <div className="button-container">
+            <Button className="add-to-wishlist" variant="outline" size={"md"}>
+              <span className="button-span">
+                <BsFillBookmarkHeartFill style={{ color: "lightcoral" }} />
+              </span>
+            </Button>
+            <Button variant="outline">
+              <span className="button-span">
+                <BsFillCartFill style={{ color: "cornflowerblue" }} />
+              </span>
+            </Button>
+          </div>
         </div>
-        <p className="product-letter price">
-          <b>{product.discountedPrice}</b>
-        </p>
-        {/* <p>{product.rating}</p> */}
-        <div className="button-container">
-          <Button className="add-to-wishlist" variant="outline" size={"md"}>
-            <span className="button-span">
-              <BsFillBookmarkHeartFill style={{ color: "lightcoral" }} />
-            </span>
-          </Button>
-          <Button variant="outline">
-            <span className="button-span">
-              <BsFillCartFill style={{ color: "cornflowerblue" }} />
-            </span>
-          </Button>
-        </div>
-      </div>
-    </Main>
+      </Main>
+    </Box>
   );
 };
 //style={{ color: "lightcoral" }}

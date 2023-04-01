@@ -254,7 +254,7 @@ export const LoginForm2 = () => {
         dispatch(loginSetShowOTP());
         dispatch(loginLoadingDone());
         console.log(otp);
-        toast.success("OTP sended successfully!");
+        toast.success("OTP sent successfully!");
       })
       .catch((error) => {
         console.log(error);
@@ -287,10 +287,10 @@ export const LoginForm2 = () => {
         dispatch(loginFailureAction(err));
       });
   }
-  if (isError) {
-    console.log(isError, ErrorMessage);
-    return <Navigate to="/error" />;
-  }
+  // if (isError) {
+  //   console.log(isError, ErrorMessage);
+  //   return <Navigate to="/error" />;
+  // }
 
   if (isAuth) {
     loginSetPhoneNumber(ph);
@@ -310,7 +310,7 @@ export const LoginForm2 = () => {
         </h2>
       ) : (
         <div className="wrapper">
-          {!showOTP ? (
+          {showOTP ? (
             <Wrapper>
               <div className="form-wrapper">
                 <div className="heading-flex">
@@ -371,7 +371,7 @@ export const LoginForm2 = () => {
                   ></OtpInput> */}
                   <Box width={["100%", "80%", "60%", "40%"]} mx="auto">
                     <FormControl>
-                      <FormLabel>Enter your pin:</FormLabel>
+                      <FormLabel>Enter OTP received on phone:</FormLabel>
                       <HStack spacing="2" justify="center" c>
                         <PinInput
                           otp
