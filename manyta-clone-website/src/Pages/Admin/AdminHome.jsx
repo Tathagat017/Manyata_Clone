@@ -19,7 +19,7 @@ React.useEffect(()=>{
 dispatch(getdata(page))
  .then((res)=>setdata(res.payload))
 },[trigger,page])
-console.log(data)
+console.log(products.length)
 
 
 

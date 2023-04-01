@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../../Components/AdminPageComponents/AdminNavbar'
 import TableData2 from "../../Components/AdminPageComponents/TableData2";
 import { getdata } from '../../redux/AdminReducer/Action';
+
+
 const AdminFunds = () => {
   const {products,singledata,isrequest}=useSelector((store)=>store.AdminReducer);
   const [trigger,setrigger]=React.useState(true);
@@ -22,12 +24,14 @@ const AdminFunds = () => {
   React.useEffect(()=>{
 dispatch(getdata())
   },[trigger])
+
+
   return (
     <>
     <Nav/>
-    <Box boxShadow={' rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset'}>
+    <Box  boxShadow={' rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset'}>
       <Flex  border={'px solid green'}>
-        <Stack gap={'3rem'} margin={'auto'} w={'34%'} boxShadow={'blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px'}>
+        <Stack gap={'3rem'} margin={'auto'} w={'34%'} boxShadow={'rgb(38, 57, 77) 0px 20px 30px -10px'}>
        <Stack  border={'px solid green'} display={'grid'} >
         <Heading color={'grey'}>Order Summary</Heading>
        <StatGroup gap={'3rem'} display={'flex'} justifyContent={'center'}>
@@ -94,9 +98,9 @@ dispatch(getdata())
 
 
         </Stack>
-        <Box margin={'auto'} w={'60%'}>
+        <Box margin={'auto'} w={'60%'} h={'500px'} overflowY={'scroll'}>
         {isrequest?<img width={'80%'} style={{margin:"auto"}} src="https://media0.giphy.com/media/MydKZ8HdiPWALc0Lqf/giphy.gif?cid=ecf05e473acjoco3l6kqx9l638wr8ednj0d9vjil79hlqfni&rid=giphy.gif&ct=g" alt="" />: <TableContainer>
-            <Table   size={'sm'} variant='striped' colorScheme='pink'>
+            <Table   size={'sm'} variant='striped' colorScheme='teal'>
               <TableCaption fontSize={'2xl'} placement="top">Orders </TableCaption>
               <Thead>
                 <Tr>
