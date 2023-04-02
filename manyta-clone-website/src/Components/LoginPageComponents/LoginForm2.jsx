@@ -29,9 +29,8 @@ import {
   loginSetUser,
   loginLoading,
   loginLoadingDone,
-  postUser,
 } from "../../redux/AuthReducer/Action";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Spinner, Button } from "@chakra-ui/react";
 
 import BeatLoaderComp from "./BeatLoader";
@@ -207,8 +206,7 @@ const Main = styled.div`
   margin: 0;
   background-color: rgb(250, 240, 240);
   width: 100%;
-  /* height: 95vh; */
-  padding-top: 11vh;
+  height: 100vh;
 `;
 export const LoginForm2 = () => {
   const dispatch = useDispatch();
@@ -220,10 +218,7 @@ export const LoginForm2 = () => {
   // const [isAuth, setIsAuth] = useState(false);
   const { showOTP, isLoading, isAuth, user, isError, ErrorMessage } =
     useSelector((state) => state.AuthReducer);
-  console.log(isAuth);
-  const location = useLocation();
-  const navigate = useNavigate();
-
+  console.log(showOTP, isLoading, isAuth, user, isError);
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
@@ -284,9 +279,7 @@ export const LoginForm2 = () => {
         dispatch(loginSetUser(res.user));
         // setLoading((prev) => !prev);
         dispatch(loginSuccessAction());
-        //postUser(ph);
         // setIsAuth((prev) => !prev);
-        navigate(location.state, { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -301,6 +294,8 @@ export const LoginForm2 = () => {
 
   if (isAuth) {
     loginSetPhoneNumber(ph);
+
+    return <Navigate to={"/"} />;
   }
 
   //   const loginSubmit = () => {};
@@ -426,3 +421,4 @@ export const LoginForm2 = () => {
     </Main>
   );
 };
+
