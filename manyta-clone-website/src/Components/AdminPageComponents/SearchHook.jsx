@@ -1,11 +1,11 @@
 import React from "react";
-const useDebounce=(func,delay)=>{
+export const useDebounce=(func,delay)=>{
 let {current:id}=React.useRef();
     
-return()=>{
+return(a)=>{
     id && clearTimeout(id)
     id=setTimeout(()=>{
-        func()
+        func(a)
     },delay)
 }
 

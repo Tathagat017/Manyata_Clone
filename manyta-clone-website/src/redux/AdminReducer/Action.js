@@ -34,9 +34,10 @@ return axios.post(`https://reqres.in/api/login`,obj)
 .catch((er)=>dispatch(actionfailure()))
 }
 
-export const getdata=(page)=>(dispatch)=>{
+export const getdata=(obj)=>(dispatch)=>{
+    console.log(obj)
     dispatch(actionrequest())
-return axios.get(`https://manyta-clone-of-myntra.cyclic.app/products?_page=${page}&_limit=60`)
+return axios.get(`https://manyta-clone-of-myntra.cyclic.app/products?_limit=60`,{params:obj})
 .then((res)=>dispatch(actiondatasuccess(res.data,res.headers["x-total-count"])))
 .catch((er)=>dispatch(actionfailure()))
 }
