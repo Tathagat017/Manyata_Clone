@@ -1,12 +1,8 @@
-import React from 'react'
+import { Image } from "@chakra-ui/react";
+import React from "react";
 
-const CartHomePage = ({imgSrc}) => {
-    const style={width:"40vw"}
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const CartHomePage = ({ url }) => {
+  return <Image cursor={"pointer"} src={url} />;
+};
 
-export default CartHomePage
+export default CartHomePage;
