@@ -17,15 +17,25 @@ const DropDown = ({ title, color }) => {
             >
               Topwear
             </Text>
-            <a href="#">T-Shirts</a>
-            <a href="#">Casual Shirts</a>
-            <a href="#">Formal Shirts</a>
-            <a href="#">Sweatshirts</a>
-            <a href="#">Sweaters</a>
-            <a href="#">Jackets</a>
-            <a href="#">Blazers & Coats</a>
-            <a href="#">Suits</a>
-            <a href="#">Rain Jackets</a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">T-Shirts</a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">
+              Casual Shirts
+            </a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">
+              Formal Shirts
+            </a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">
+              Sweatshirts
+            </a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">Sweaters</a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">Jackets</a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">
+              Blazers & Coats
+            </a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">Suits</a>
+            <a href="/products?itemType=T-shirt&_page=1&_limit=16">
+              Rain Jackets
+            </a>
             <br />
             <Text
               textAlign={"left"}
@@ -36,10 +46,14 @@ const DropDown = ({ title, color }) => {
             >
               Indian & Festive wear
             </Text>
-            <a href="#">Kurtas & Kurta Sets</a>
-            <a href="#">Sherwanis</a>
-            <a href="#">Nehru Jackets</a>
-            <a href="#">Dhotis</a>
+            <a href="/products?itemType=Kurta&_page=1&_limit=16">
+              Kurtas & Kurta Sets
+            </a>
+            <a href="/products?itemType=Kurta&_page=1&_limit=16">Sherwanis</a>
+            <a href="/products?itemType=Kurta&_page=1&_limit=16">
+              Nehru Jackets
+            </a>
+            <a href="/products?itemType=Kurta&_page=1&_limit=16">Dhotis</a>
           </div>
           <div>
             <Text
@@ -51,11 +65,17 @@ const DropDown = ({ title, color }) => {
             >
               Bottomwear
             </Text>
-            <a href="#">Jeans</a>
-            <a href="#">Casual Trousers</a>
-            <a href="#">Formal Trousers</a>
-            <a href="#">Shorts</a>
-            <a href="#">Track Pants & Joggers</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">Jeans</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">
+              Casual Trousers
+            </a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">
+              Formal Trousers
+            </a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">Shorts</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">
+              Track Pants & Joggers
+            </a>
             <br />
             <Text
               textAlign={"left"}
@@ -66,11 +86,15 @@ const DropDown = ({ title, color }) => {
             >
               Innerwear & Sleepwear
             </Text>
-            <a href="#">Briefs & Trunks</a>
-            <a href="#">Boxers</a>
-            <a href="#">Vests</a>
-            <a href="#">Sleepwear & Loungewear</a>
-            <a href="#">Thermals</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">
+              Briefs & Trunks
+            </a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">Boxers</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">Vests</a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">
+              Sleepwear & Loungewear
+            </a>
+            <a href="/products?itemType=Trouser&_page=1&_limit=16">Thermals</a>
             <br />
             <Text
               textAlign={"left"}
@@ -92,13 +116,21 @@ const DropDown = ({ title, color }) => {
             >
               Footwear
             </Text>
-            <a href="#">Casual Shoes</a>
-            <a href="#">Sports Shoes</a>
-            <a href="#">Formal Shoes</a>
-            <a href="#">Sneakers</a>
-            <a href="#">Sandals & Floaters</a>
-            <a href="#">Flip Flops</a>
-            <a href="#">Socks</a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">
+              Casual Shoes
+            </a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">
+              Sports Shoes
+            </a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">
+              Formal Shoes
+            </a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">Sneakers</a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">
+              Sandals & Floaters
+            </a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">Flip Flops</a>
+            <a href="/products?itemType=Shoes&_page=1&_limit=16">Socks</a>
             <br />
             <Text
               textAlign={"left"}
@@ -131,6 +163,9 @@ const DropDown = ({ title, color }) => {
             >
               Watches
             </Text>
+            <a href="/products?itemType=Watch&_page=1&_limit=16">
+              Sports Shoes
+            </a>
           </div>
           <div>
             <Text
@@ -215,71 +250,70 @@ const DropDown = ({ title, color }) => {
 
 export default DropDown;
 
-const DIV=styled.div`
-    .dropbtn {
-  background-color: white;
-  color: black;
-  /* padding: 16px; */
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  /* border: 1px solid red; */
-  font-weight: 650;
-  font-size: small;
-}
+const DIV = styled.div`
+  .dropbtn {
+    background-color: white;
+    color: black;
+    /* padding: 16px; */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    /* border: 1px solid red; */
+    font-weight: 650;
+    font-size: small;
+  }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  z-index: 2;
-}
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  width: 960px;
-  padding: 30px 20px;
-  /* height: 400px; */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+  }
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 960px;
+    padding: 30px 20px;
+    /* height: 400px; */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  /* padding: 12px 16px; */
-  padding: 3px;
-  text-align: left;
-  text-decoration: none;
-  display: block;
-  margin-left: 10px;
-  font-size: small;
-  z-index: 2;
-  /* border:1px solid red; */
-}
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    /* padding: 12px 16px; */
+    padding: 3px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    margin-left: 10px;
+    font-size: small;
+    z-index: 2;
+    /* border:1px solid red; */
+  }
 
-.dropdown-content b {
-  padding: 3px;
-  text-align: left;
-  text-decoration: none;
-  display: block;
-  margin-left: 10px;
-  font-size: small;
-}
+  .dropdown-content b {
+    padding: 3px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    margin-left: 10px;
+    font-size: small;
+  }
 
-.dropdown-content a:hover {
-  font-weight: 700;
-  /* z-index: 2; */
-}
+  .dropdown-content a:hover {
+    font-weight: 700;
+    /* z-index: 2; */
+  }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  /* display: block; */
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  z-index: 2;
-}
-
-`
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    /* display: block; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 2;
+  }
+`;

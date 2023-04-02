@@ -421,4 +421,3 @@ export const LoginForm2 = () => {
     </Main>
   );
 };
-

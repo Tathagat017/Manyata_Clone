@@ -35,7 +35,7 @@ export const postUser = async (
         userDataFromServer = res.data;
       });
     userDataFromServer?.map((el) => {
-      el.phone !== phone
+      return el.phone !== phone
         ? userDataFromServer.push({
             name: username,
             phone: phone,

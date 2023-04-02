@@ -6,7 +6,9 @@ import Footer from "./../../Components/Footer";
 import styled from "styled-components";
 
 const LOGINWRAP = styled.div`
-  margin-top: 0.5vh;
+  padding: 5%;
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 export const LoginPage = () => {

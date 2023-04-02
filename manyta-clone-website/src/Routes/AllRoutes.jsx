@@ -17,10 +17,18 @@ export const AllRoutes = () => {
     <Routes>
       {/* Provide all Routes here */}
       <Route path="/" element={<HomePage />} />
-      <Route path="/cart" element={<CartPage />} />
+
+      <Route
+        path="/cart"
+        element={
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        }
+      />
       <Route path="/login" element={<LoginPage />} />
       <Route
-        path="/wishlist/:user"
+        path="/wishlist"
         element={
           <PrivateRoute>
             <WishListPage />
@@ -36,7 +44,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/orderplaced/:user"
+        path="/orderplaced"
         element={
           <PrivateRoute>
             <OrderPlacedPage />

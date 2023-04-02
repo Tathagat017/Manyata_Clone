@@ -58,7 +58,7 @@ export const ProductsPage = () => {
         <ProductList />
       </DIVIDE>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import styled from "styled-components";
 
 // import AppStoreBadge from '@/components/AppStoreBadge';
 // import PlayStoreBadge from '@/components/PlayStoreBadge';
@@ -106,10 +107,16 @@ export default function LargeWithAppLinksAndSocial() {
             <SocialButton label={"Twitter"} href={"https://twitter.com/myntra"}>
               <FaTwitter />
             </SocialButton>
-            <SocialButton label={"YouTube"} href={"https://www.youtube.com/user/myntradotcom"}>
+            <SocialButton
+              label={"YouTube"}
+              href={"https://www.youtube.com/user/myntradotcom"}
+            >
               <FaYoutube />
             </SocialButton>
-            <SocialButton label={"Instagram"} href={"https://www.instagram.com/myntra/"}>
+            <SocialButton
+              label={"Instagram"}
+              href={"https://www.instagram.com/myntra/"}
+            >
               <FaInstagram />
             </SocialButton>
           </Stack>
@@ -309,10 +316,21 @@ export default function LargeWithAppLinksAndSocial() {
           SHOP ONLINE AT MYNTRA WITH COMPLETE CONVENIENCE
         </Text>
         <Text fontSize="small" textAlign={"left"} w="90%" m="auto" color="gray">
-        Another reason why Myntra is the best of all online stores is the complete convenience that it offers. You can view your favourite brands with price options for different products in one place. A user-friendly interface will guide you through your selection process. Comprehensive size charts, product information and high-resolution images help you make the best buying decisions. You also have the freedom to choose your payment options, be it card or cash-on-delivery. The 30-day returns policy gives you more power as a buyer. Additionally, the try-and-buy option for select products takes customer-friendliness to the next level.
+          Another reason why Myntra is the best of all online stores is the
+          complete convenience that it offers. You can view your favourite
+          brands with price options for different products in one place. A
+          user-friendly interface will guide you through your selection process.
+          Comprehensive size charts, product information and high-resolution
+          images help you make the best buying decisions. You also have the
+          freedom to choose your payment options, be it card or
+          cash-on-delivery. The 30-day returns policy gives you more power as a
+          buyer. Additionally, the try-and-buy option for select products takes
+          customer-friendliness to the next level.
         </Text>
         <Text fontSize="small" textAlign={"left"} w="90%" m="auto" color="gray">
-        Enjoy the hassle-free experience as you shop comfortably from your home or your workplace. You can also shop for your friends, family and loved-ones and avail our gift services for special occasions.
+          Enjoy the hassle-free experience as you shop comfortably from your
+          home or your workplace. You can also shop for your friends, family and
+          loved-ones and avail our gift services for special occasions.
         </Text>
       </Box>
       <br />
@@ -320,3 +338,8 @@ export default function LargeWithAppLinksAndSocial() {
     </Box>
   );
 }
+
+const Foot = styled.div`
+  margin-top: 20px;
+  height: 300px;
+`;
