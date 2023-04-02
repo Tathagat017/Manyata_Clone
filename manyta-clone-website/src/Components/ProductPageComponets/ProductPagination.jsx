@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Flex } from "@chakra-ui/react";
-
+import { Box, Button, Flex } from "@chakra-ui/react";
+import Footer from "../../Components/Footer";
 function Pagination({ totalPages, currentPage, handlePageChange }) {
   const displayPages = [];
   const MIN_PAGES = 15;
@@ -63,35 +63,38 @@ function Pagination({ totalPages, currentPage, handlePageChange }) {
   }
 
   return (
-    <Flex justifyContent="center" alignItems="center" maxW="80%">
-      <Button
-        isDisabled={currentPage === 1}
-        onClick={() => handleClick(currentPage - 1)}
-      >
-        prev
-      </Button>
-      {startIndex > 0 && <Button onClick={() => handleClick(1)}>1</Button>}
-      {startIndex > 1 && <Button disabled>...</Button>}
-      {displayPages.slice(startIndex, endIndex + 1).map((page, index) => (
+    <Box>
+      <Flex justifyContent="center" alignItems="center" maxW="80%">
         <Button
-          key={index}
-          onClick={() => handleClick(page)}
-          isDisabled={page === currentPage}
+          isDisabled={currentPage === 1}
+          onClick={() => handleClick(currentPage - 1)}
         >
-          {page}
+          prev
         </Button>
-      ))}
-      {endIndex < displayPages.length - 2 && <Button disabled>...</Button>}
-      {endIndex < displayPages.length - 1 && (
-        <Button onClick={() => handleClick(totalPages)}>{totalPages}</Button>
-      )}
-      <Button
-        isDisabled={currentPage === totalPages}
-        onClick={() => handleClick(currentPage + 1)}
-      >
-        next
-      </Button>
-    </Flex>
+        {startIndex > 0 && <Button onClick={() => handleClick(1)}>1</Button>}
+        {startIndex > 1 && <Button disabled>...</Button>}
+        {displayPages.slice(startIndex, endIndex + 1).map((page, index) => (
+          <Button
+            key={index}
+            onClick={() => handleClick(page)}
+            isDisabled={page === currentPage}
+          >
+            {page}
+          </Button>
+        ))}
+        {endIndex < displayPages.length - 2 && <Button disabled>...</Button>}
+        {endIndex < displayPages.length - 1 && (
+          <Button onClick={() => handleClick(totalPages)}>{totalPages}</Button>
+        )}
+        <Button
+          isDisabled={currentPage === totalPages}
+          onClick={() => handleClick(currentPage + 1)}
+        >
+          next
+        </Button>
+      </Flex>
+      {/* <Footer /> */}
+    </Box>
   );
 }
 

@@ -24,6 +24,7 @@ const Main = styled.div`
   padding: 2%;
   overflow: hidden;
   box-sizing: border-box;
+
   .Hover {
     .Hover:hover {
       transform: scale(1.01);

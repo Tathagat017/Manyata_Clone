@@ -40,6 +40,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: none;
   /* padding: 1%; */
   padding-top: 0;
   padding: 0;
@@ -49,7 +50,7 @@ const Main = styled.div`
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   img {
     width: 17vw;
-    height: 38vh;
+    height: 35vh;
     margin-top: 0;
     /* border-radius: 5% 5% 5% 5%; */
     margin-bottom: 0;

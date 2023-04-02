@@ -1,10 +1,25 @@
 import { ProductList } from "./../../Components/ProductPageComponets/ProductList";
 import { SideBar } from "./../../Components/ProductPageComponets/SideBar";
-import { Flex, Spinner } from "@chakra-ui/react";
+import {
+  Flex,
+  Spinner,
+  Stack,
+  Container,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { Box, Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import {
+  Box,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+  SocialButton,
+} from "@chakra-ui/react";
 import { HashLoader } from "react-spinners";
+import Navbar from "./../../Components/NavBar";
+import Footer from "../../Components/Footer";
 const SpinContainer = styled.div`
   margin-top: ${({ isLoading }) => (isLoading ? "35vh" : "0")};
 `;
@@ -20,6 +35,11 @@ export const ProductsPage = () => {
   const { isLoading, isError } = useSelector((state) => state.ProductReducer);
   return (
     <div>
+      <div
+        style={{ position: "fixed", zIndex: "99999999", marginBottom: "2vh" }}
+      >
+        <Navbar />
+      </div>
       <SpinContainer isLoading={isLoading}>
         {isLoading && (
           <Spinner
@@ -37,6 +57,8 @@ export const ProductsPage = () => {
         {!isLoading && <SideBar />}
         <ProductList />
       </DIVIDE>
+
+      {/* <Footer /> */}
     </div>
   );
 };
