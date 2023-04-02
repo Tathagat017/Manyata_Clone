@@ -38,7 +38,7 @@ export const ProductsPage = () => {
       <div
         style={{ position: "fixed", zIndex: "99999999", marginBottom: "2vh" }}
       >
-        <Navbar />
+        {!isLoading && <Navbar />}
       </div>
       <SpinContainer isLoading={isLoading}>
         {isLoading && (

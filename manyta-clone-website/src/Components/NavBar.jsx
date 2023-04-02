@@ -15,8 +15,7 @@ const Navbar = () => {
         className="nav"
         w="100%"
         mt={"-1vh"}
-        // border="1px solid red"
-
+        border="2px solid red"
         bg="white"
         alignContent={"center"}
         justifyContent="space-around"

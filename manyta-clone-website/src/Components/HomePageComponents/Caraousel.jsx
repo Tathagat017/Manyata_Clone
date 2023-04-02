@@ -36,8 +36,8 @@ function CarouselFadeExample() {
 
 export default CarouselFadeExample;
 
-const DIV=styled.div`
-    z-index: -1;
-    position: relative;
-    margin-top: 8rem;
-`
+const DIV = styled.div`
+  z-index: -1;
+  position: relative;
+  padding-top: 6rem;
+`;
