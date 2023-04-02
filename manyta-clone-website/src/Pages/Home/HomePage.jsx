@@ -3,8 +3,10 @@ import React from "react";
 import Footer from "../../Components/Footer";
 // import image1 from "../Images/"
 import Navbar from "./../../Components/NavBar";
-
+import { useSelector } from "react-redux";
 export const HomePage = () => {
+  const { cart } = useSelector((state) => state.CartReducer);
+  console.log(cart);
   return (
     <div>
       <Navbar />

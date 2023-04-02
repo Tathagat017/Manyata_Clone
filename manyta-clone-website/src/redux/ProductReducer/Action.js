@@ -16,23 +16,22 @@ const getProductSuccess = (payload) => {
 const getProductFailure = () => {
   return { type: GET_PRODUCT_FAILURE };
 };
+// Complete get products functionality here
+export const getProducts = (paramObj) => async (dispatch) => {
+  let url = `https://manyta-clone-of-myntra.cyclic.app/products`;
+  console.log(url);
+  //?category
 
-export const getProducts =
-  (sort = "") =>
-  async (dispatch) => {
-    let url = `https://manyta-clone-of-myntra.cyclic.app/products`;
-    // if (sort) {
-    //   url = `http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/products?_sort=discountPercentage&_order=${sort}`;
-    // }
-    console.log(url);
-    // Complete get products functionality here
-    dispatch(getProductRequest());
-    try {
-      const res = await axios.get(url);
-      console.log(res.data);
-      dispatch(getProductSuccess(res.data));
-    } catch (err) {
-      console.log(err);
-      dispatch(getProductFailure());
-    }
-  };
+  dispatch(getProductRequest());
+  try {
+    const res = await axios.get(
+      `https://manyta-clone-of-myntra.cyclic.app/products`,
+      paramObj
+    );
+    console.log(res.data);
+    dispatch(getProductSuccess(res.data));
+  } catch (err) {
+    console.log(err);
+    dispatch(getProductFailure());
+  }
+};

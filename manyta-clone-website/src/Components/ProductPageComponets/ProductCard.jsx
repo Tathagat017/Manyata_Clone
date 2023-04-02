@@ -14,20 +14,23 @@ import { Box } from "@chakra-ui/react";
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 const Main = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-  width: 17vw;
+  wimport CartModal from './CartModal';
+idth: 17vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   /* padding: 1%; */
   padding-top: 0;
-  z-index: 999999;
+  padding: 0;
+
   cursor: pointer;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   img {
-    width: 80vw;
+    width: 17vw;
     height: 45vh;
-    margin: auto;
+
     margin-top: 0;
     /* border-radius: 5% 5% 5% 5%; */
     margin-bottom: 0;

@@ -9,6 +9,12 @@ const SpinContainer = styled.div`
   margin-top: ${({ isLoading }) => (isLoading ? "35vh" : "0")};
 `;
 
+const DIVIDE = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ProductsPage = () => {
   const { isLoading, isError } = useSelector((state) => state.ProductReducer);
   return (
@@ -26,10 +32,10 @@ export const ProductsPage = () => {
           />
         )}
       </SpinContainer>
-      <Flex>
+      <DIVIDE>
         {!isLoading && <SideBar />}
         <ProductList />
-      </Flex>
+      </DIVIDE>
     </div>
   );
 };
