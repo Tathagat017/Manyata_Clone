@@ -2,11 +2,13 @@ import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_FAILURE,
   GET_PRODUCT_SUCCESS,
+  GET_PRODUCT_PAGES,
 } from "./ActionType";
 
 const initialState = {
   isLoading: false,
   isError: false,
+  totalLength: 0,
   products: [],
 };
 
@@ -26,6 +28,10 @@ export const reducer = (state = initialState, action) => {
     }
     case GET_PRODUCT_FAILURE: {
       return { ...state, isLoading: true, isError: true };
+    }
+
+    case GET_PRODUCT_PAGES: {
+      return { ...state, totalLength: payload };
     }
     default: {
       return state;

@@ -26,7 +26,8 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-import { addToCart } from "./../../redux/CartReducer/Action";
+
+import { AddToCartAction, addToCart } from "./../../redux/CartReducer/Action";
 /////
 
 const Main = styled.div`
@@ -133,6 +134,8 @@ export const CartModel = ({ product }) => {
   const { products, isLoading, isError } = useSelector(
     (state) => state.ProductReducer
   );
+  const { cart } = useSelector((state) => state.CartReducer);
+
   const [quantity, setQuantity] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -151,7 +154,23 @@ export const CartModel = ({ product }) => {
   //add to cart
   function handleAddToCart(product) {
     // Your logic for adding the item to cart goes here
-    addToCart(product);
+    console.log(product);
+
+    // addToCart(product);
+    let originalStringPrice = product.discountedPrice
+      .split("")
+      .splice(4, product.discountedPrice.length)
+      .join("");
+
+    //console.log(+originalStringPrice);
+    let cartTotal = +originalStringPrice * quantity;
+    let productTocart = {
+      ...product,
+      ["quantity"]: quantity,
+      ["TotalPriceThisItemInCart"]: cartTotal,
+    };
+    dispatch(AddToCartAction(productTocart));
+    console.log(cart);
     // Show a success toaster notification
     toast({
       title: "Item added to cart",
@@ -241,6 +260,7 @@ export const CartModel = ({ product }) => {
                             h={"40vh"}
                             boxShadow="xl"
                             padding={"1%"}
+                            alt="error"
                           ></Image>
 
                           <Text>

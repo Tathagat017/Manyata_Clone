@@ -70,11 +70,13 @@ export const SideBar = () => {
   const initialitemType = searchParams.getAll("itemType");
   const initalBrand = searchParams.getAll("brand");
   const initialRating = searchParams.getAll("rating_gte");
+
   const [gender, setGender] = useState(initialGender || []);
   const [item, setItem] = useState(initialitemType || []);
   const [brand, setBrand] = useState(initalBrand || []);
   const [rating, setRating] = useState(initialRating || []);
   const [discount, setDiscount] = useState(initialDiscount || []);
+
   //Gender selection
   const handleChangeGender = (e) => {
     console.log(e.target.value);
@@ -124,11 +126,13 @@ export const SideBar = () => {
   const handleChangeRating = (e) => {
     console.log(e.target.value);
     let newRating = [...rating];
-    const value = Number(e.target.value);
+    const value = e.target.value;
     if (newRating.includes(value)) {
-      newRating = newRating.filter((el) => el.rating !== e.target.value);
+      newRating = newRating.filter(
+        (el) => el.toString() !== e.target.value.toString()
+      );
     } else {
-      newRating.push(value);
+      newRating.push(value.toString());
     }
     console.log("mew", newRating);
     setRating(newRating);
@@ -141,13 +145,13 @@ export const SideBar = () => {
     let newDiscount = [...discount];
     const value = e.target.value;
     if (newDiscount.includes(value)) {
-      newDiscount = newDiscount.filter((el) => el.discount !== e.target.value);
+      newDiscount = newDiscount.filter((el) => el !== e.target.value);
     } else {
       newDiscount.push(value);
     }
     //console.log("mew", newCategory);
     setDiscount(newDiscount);
-    //console.log(category);
+    // console.log("mew mew", discount);
   };
 
   useEffect(() => {
@@ -157,6 +161,8 @@ export const SideBar = () => {
       brand: brand,
       rating_gte: rating,
       discount_gte: discount,
+      _page: searchParams.get("_page"),
+      _limit: 16,
     };
     setSearchParams(params);
   }, [gender, item, brand, rating, discount]);
@@ -233,9 +239,9 @@ export const SideBar = () => {
             <Checkbox
               size="sm"
               colorScheme="purple"
-              value={"Watches"}
+              value={"Watch"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Watches")}
+              isChecked={item.includes("Watch")}
             >
               Watches
             </Checkbox>
@@ -372,7 +378,7 @@ export const SideBar = () => {
               colorScheme="blackAlpha"
               value={4}
               onChange={handleChangeRating}
-              isChecked={rating.includes(4)}
+              isChecked={rating.includes("4")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -386,7 +392,7 @@ export const SideBar = () => {
               colorScheme="blackAlpha"
               value={3}
               onChange={handleChangeRating}
-              isChecked={rating.includes(3)}
+              isChecked={rating.includes("3")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -399,7 +405,7 @@ export const SideBar = () => {
               colorScheme="blackAlpha"
               value={2}
               onChange={handleChangeRating}
-              isChecked={rating.includes(2)}
+              isChecked={rating.includes("2")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -411,7 +417,7 @@ export const SideBar = () => {
               colorScheme="blackAlpha"
               value={1}
               onChange={handleChangeRating}
-              isChecked={rating.includes(1)}
+              isChecked={rating.includes("1")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />

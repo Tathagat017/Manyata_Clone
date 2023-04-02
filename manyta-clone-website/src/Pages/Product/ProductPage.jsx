@@ -11,6 +11,7 @@ const SpinContainer = styled.div`
 
 const DIVIDE = styled.div`
   width: 100vw;
+  height: 95vh;
   display: flex;
   justify-content: space-between;
 `;

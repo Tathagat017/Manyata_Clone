@@ -9,6 +9,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_TO_CART: {
       return { ...state, cart: [...state.cart, payload] };
     }
+
     default: {
       return state;
     }
