@@ -47,7 +47,7 @@ export function AdminLogin() {
         align={"center"}
         justify={"center"}
       >
-        <Image className={styles.imagelogo} src={"./Logo.png"} alt={"memo"} />
+        <Image className={styles.imagelogo} src={"./Logo.jpg"} alt={"memo"} />
         <Stack border={"0px solid red"} spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"} justify={"left"} align={"left"}>
             Sign in as Admin
@@ -101,7 +101,7 @@ export function AdminLogin() {
           alt={"Login Image"}
           objectFit={"cover"}
           src={
-            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
+            "https://media0.giphy.com/media/LESpNIDaNBUcRIPzng/giphy.gif?cid=ecf05e47tnrfxn7mmlq5dv26klte6cw25h4n6q709ksn29mx&rid=giphy.gif&ct=g"
           }
         />
       </div>

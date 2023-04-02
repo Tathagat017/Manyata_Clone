@@ -8,8 +8,10 @@ import { auth } from "./firebase";
 import OtpInput from "otp-input-react";
 import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
 import { CgSpinner } from "react-icons/cg";
-
+import { Spinner, Button } from "@chakra-ui/react";
 import { Navigate } from "react-router-dom";
+
+import BeatLoaderComp from "./BeatLoader";
 
 const config = {
   apiKey: "AIzaSyADAOaOsW12VUJkhj8_GUL0HpwfKZK8v-U",
@@ -144,6 +146,16 @@ const Wrapper = styled.div`
     width: 100vw;
   }
 `;
+
+const Wrapper2 = styled.div`
+  .otpInputClass {
+    margin-left: 30vw;
+    textalign: center;
+  }
+  .verifyButton {
+    border: 1px solid black;
+  }
+`;
 export const LoginForm = () => {
   const [otp, setOtp] = useState("");
   const [ph, setPh] = useState("");
@@ -261,35 +273,41 @@ export const LoginForm = () => {
               </div>
             </Wrapper>
           ) : (
-            <div className="OTP">
-              <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                <BsFillShieldLockFill size={30} />
-              </div>
-              <label
-                htmlFor="otp"
-                className="font-bold text-xl text-white text-center"
-              >
-                Enter your OTP
-              </label>
-              <OtpInput
-                value={otp}
-                onChange={setOtp}
-                OTPLength={6}
-                otpType="number"
-                disabled={false}
-                inputStyles={{ border: "1px solid", margin: "1px" }}
-                className="opt-container "
-              ></OtpInput>
-              <button
-                onClick={onOTPVerify}
-                className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
-              >
+            <Wrapper2>
+              <div className="OTP">
+                <h1>Enter your OTP</h1>
+                <div className="otpInputClass">
+                  <OtpInput
+                    value={otp}
+                    onChange={setOtp}
+                    OTPLength={6}
+                    otpType="number"
+                    disabled={false}
+                    inputStyles={{ border: "1px solid", margin: "1px" }}
+                    className="opt-container "
+                  ></OtpInput>
+                </div>
                 {loading && (
-                  <CgSpinner size={20} className="mt-1 animate-spin" />
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="md"
+                  />
                 )}
-                <span>Verify OTP</span>
-              </button>
-            </div>
+                {/* <button onClick={onOTPVerify} className="VerifyButton">
+                  Verify
+                </button> */}
+                <Button
+                  isLoading={loading}
+                  colorScheme="blue"
+                  spinner={<BeatLoaderComp loading={loading} color="white" />}
+                >
+                  Click me
+                </Button>
+              </div>
+            </Wrapper2>
           )}
         </div>
       )}
