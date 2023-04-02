@@ -98,7 +98,7 @@ dispatch(getdata())
 
 
         </Stack>
-        <Box  margin={'auto'} w={'70%'} h={'500px'} overflowY={'scroll'}>
+        <Box  margin={'auto'} w={'70%'} h={'500px'} overflowX={'scroll'} overflowY={'scroll'}>
         {isrequest?<img width={'80%'} style={{margin:"auto"}} src="https://media0.giphy.com/media/MydKZ8HdiPWALc0Lqf/giphy.gif?cid=ecf05e473acjoco3l6kqx9l638wr8ednj0d9vjil79hlqfni&rid=giphy.gif&ct=g" alt="" />: <TableContainer>
             <Table   size={'sm'} variant='striped' colorScheme='teal'>
               <TableCaption fontSize={'2xl'} placement="top">Orders </TableCaption>

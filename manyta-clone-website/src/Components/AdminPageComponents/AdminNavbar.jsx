@@ -55,15 +55,15 @@ else{
  const debounce=useDebounce(handlechange,2000);
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box position={'fixed'} w={'100%'} bg={useColorModeValue('gray.100', 'gray.900')} px={4} >
         <Flex  h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Flex w={'40%'} gap={'3rem'} justifyContent={'space-evenly'}>
-           <Link style={{ textDecoration: 'none' }} href={'/adminhome'}><Text  fontSize={'2xl'} fontWeight={'bold'} marginRight={'3rem'}>Home</Text></Link> 
-           <Link style={{ textDecoration: 'none' }} href={'/adminfundsorders'}><Text fontSize={'2xl'} fontWeight={'bold'}>Funds</Text></Link>
-           <Link style={{ textDecoration: 'none' }} href={'/adminaddproducts'}><Text noOfLines={[1]} fontSize={'2xl'} fontWeight={'bold'}>Add Products</Text></Link> 
+           <Link style={{ textDecoration: 'none' }} href={'/adminhome'}><Text  fontSize={'1.5xl'} fontWeight={'bold'} marginRight={'3rem'}>Home</Text></Link> 
+           <Link style={{ textDecoration: 'none' }} href={'/adminfundsorders'}><Text fontSize={'1.5xl'} fontWeight={'bold'}>Funds</Text></Link>
+           <Link style={{ textDecoration: 'none' }} href={'/adminaddproducts'}><Text noOfLines={[1]} fontSize={'1.5xl'} fontWeight={'bold'}>Add Products</Text></Link> 
            
           </Flex>
-         <Flex boxShadow={'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'} _hover={{w:'40%'}} w={'25%'} transition={'width 0.5s ease-out'}> <Input onChange={(e)=>debounce(e)} variant='filled' placeholder='Search Products' /></Flex>
+         <Flex boxShadow={'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'} _hover={{w:'30%'}} w={'25%'} transition={'width 0.5s ease-out'}> <Input onChange={(e)=>debounce(e)} variant='filled' placeholder='Search Products' /></Flex>
           <Flex alignItems={'center'}>
             <Stack gap direction={'row'} spacing={7}>
               <Button  onClick={toggleColorMode}>

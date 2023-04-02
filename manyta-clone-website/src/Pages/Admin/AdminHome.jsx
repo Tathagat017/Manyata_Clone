@@ -95,7 +95,7 @@ dispatch(getdata(obj))
   {/* //pagination */}
  
   <Box marginTop={'2rem'}>
-    <Box w={'100%'}>
+    <Box w={'100%'} marginTop={'5rem'}>
       <Flex >
         <VStack h={'600px'} overflowY={'scroll'} gap={'3rem'} w={'22%'}>
         <Text fontSize={'2xl'} fontWeight={'bold'}>Filters</Text>
