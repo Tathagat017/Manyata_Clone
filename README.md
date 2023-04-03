@@ -43,9 +43,9 @@ Featues :
 <li>search
 </ol>
 
-<h3>Outer and inner Men’s page.
+<p>Outer and inner Men’s page.
 
-On this outer men’s page, we have brands of men’s clothing and their accessories. on clicking any of the brands it will redirect to the men’s inner page where we have options of wishlist and add to bag and filter items option. on clicking the wishlist option it will add the product to the wishlist, and on clicking add to bag it will add the product to the bag. filter items option in this option we have names of brands, prices, and sorting</h3>
+On this outer men’s page, we have brands of men’s clothing and their accessories. on clicking any of the brands it will redirect to the men’s inner page where we have options of wishlist and add to bag and filter items option. on clicking the wishlist option it will add the product to the wishlist, and on clicking add to bag it will add the product to the bag. filter items option in this option we have names of brands, prices, and sorting</p>
 
 
 <Admin>
