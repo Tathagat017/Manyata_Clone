@@ -32,7 +32,7 @@ import {
 } from "../../redux/AuthReducer/Action";
 import { Navigate } from "react-router-dom";
 import { Spinner, Button } from "@chakra-ui/react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import BeatLoaderComp from "./BeatLoader";
 const config = {
   apiKey: "AIzaSyADAOaOsW12VUJkhj8_GUL0HpwfKZK8v-U",
@@ -212,13 +212,16 @@ export const LoginForm2 = () => {
   const dispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const [ph, setPh] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   // const [loading, setLoading] = useState(false);
   // const [showOTP, setShowOTP] = useState(true);
   // const [user, setUser] = useState(null);
   // const [isAuth, setIsAuth] = useState(false);
   const { showOTP, isLoading, isAuth, user, isError, ErrorMessage } =
     useSelector((state) => state.AuthReducer);
-  console.log(showOTP, isLoading, isAuth, user, isError);
+  //console.log(showOTP, isLoading, isAuth, user, isError);
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
@@ -274,7 +277,7 @@ export const LoginForm2 = () => {
     window.confirmationResult
       .confirm(otp)
       .then(async (res) => {
-        console.log(res);
+        //console.log(res);
         // setUser(res.user);
         dispatch(loginSetUser(res.user));
         // setLoading((prev) => !prev);
@@ -293,10 +296,14 @@ export const LoginForm2 = () => {
   // }
 
   if (isAuth) {
-    loginSetPhoneNumber(ph);
-
-    return <Navigate to={"/"} />;
+    return <Navigate to={location.state} />;
   }
+
+  // if (isAuth) {
+  //   loginSetPhoneNumber(ph);
+
+  //   return <Navigate to={"/"} />;
+  // }
 
   //   const loginSubmit = () => {};
   //   const otpSubmit = () => {};

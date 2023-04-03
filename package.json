@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "react-icons": "^4.8.0",
-    "react-spinners": "^0.13.8",
-    "vercel": "^28.18.3"
-  }
-}

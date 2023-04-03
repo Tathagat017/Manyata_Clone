@@ -46,7 +46,6 @@ import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
 
 const Div = styled.div`
-  border: 2px solid;
   width: 100%;
 
   :first-child {
@@ -63,9 +62,16 @@ const Div = styled.div`
   padding-right: 1%;
 `;
 
-export const CartCard = ({ product, onDelete }) => {
+export const CartCard = ({ product, onDelete, item }) => {
   console.log("page");
-  const { image, title, quantity, price, selected } = product;
+  const {
+    image,
+    title,
+    quantity,
+    discountedPrice,
+    TotalPriceThisItemInCart,
+    local,
+  } = product;
 
   return (
     <Div>
@@ -78,15 +84,18 @@ export const CartCard = ({ product, onDelete }) => {
           boxShadow="lg"
         />
         <Box flex="2" ml={4}>
-          <Text fontWeight="bold">{title}</Text>
+          <Text fontWeight="black" color="gray.800">
+            Item{item + 1}:{title}
+          </Text>
           <Text fontSize="md" color="gray.500">
             Quantity: {quantity}
           </Text>
-          <Text fontSize="sm" color="gray.500">
-            Selected: {selected}
+          <Text fontSize="md" color="gray.500"></Text>
+          <Text fontSize="md" color="gray.500">
+            Price: {discountedPrice}
           </Text>
-          <Text fontWeight="bold" mt={2}>
-            Price: {price}
+          <Text fontWeight={"bold"}>
+            SubTotal :Rs {TotalPriceThisItemInCart}
           </Text>
         </Box>
         <Stack spacing={3}>
@@ -101,7 +110,7 @@ export const CartCard = ({ product, onDelete }) => {
           size="sm"
           variant="ghost"
           colorScheme="red"
-          onClick={() => onDelete(product)}
+          onClick={() => onDelete(item)}
           ml={"2.5vw"}
         >
           <FaTimes />

@@ -106,6 +106,16 @@ export const ProductList = () => {
             handlePageChange={handlePage}
           />
         </PaginationWrapper>
+        <img
+          src="./extraFoot.jpg"
+          style={{
+            width: "100%",
+            zIndex: "9",
+            position: "absolute",
+            marginRight: "30vw",
+            marginLeft: "-10vh",
+          }}
+        ></img>
       </ProductDiv>
     )
   );

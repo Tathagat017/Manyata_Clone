@@ -62,7 +62,7 @@ const Main = styled.div`
   }
 `;
 
-export const SideBar = () => {
+export const SideBar = ({ style }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialGender = searchParams.getAll("gender");
   const initialDiscountedPrice = searchParams.getAll("discountedPrice");
@@ -166,6 +166,7 @@ export const SideBar = () => {
     };
     setSearchParams(params);
   }, [gender, item, brand, rating, discount]);
+  const { value } = style;
   return (
     <MainLoco>
       <Main>

@@ -1,4 +1,13 @@
-import { Heading, Text, Flex, Link, Grid, Image, Box } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  Flex,
+  Link,
+  Grid,
+  Image,
+  Box,
+  Spinner,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../Components/Footer";
