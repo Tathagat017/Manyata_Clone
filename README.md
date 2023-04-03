@@ -1,18 +1,31 @@
 # screeching-idea-7572
 
-A clone of Myntra website
-
-Already in package.json-- just npm i
+<h1>A clone of Myntra website</h1>
 
 
-Work done : API deployed - products and user key , NavBar Created, Admin Panel started, Login form created , OTP authentication drafted , All routes and private route created
+Summary :
+<p>The Manyata Clone is a website built using React, Chakra UI, HTML, and CSS. The website is designed to provide an online platform for users to shop for clothes and accessories similar to Myntra, a popular Indian e-commerce company.
+
+The website is built with a responsive design that works seamlessly across all devices. It features a user-friendly interface that makes it easy for users to navigate and find what they are looking for.<br>
+
+The homepage of the website displays various categories of clothing and accessories available for purchase, as well as featured products, and a search bar. Users can browse through the different categories, view product details, and add items to their cart for checkout.<br>
+
+The website also features a user account system that allows users to create an account, login, and view their order history. Payment options are available for users to complete their purchases securely.</p><br>
+
+<p>Overall, the Myntra Clone is a well-designed e-commerce website that provides an excellent user experience for shoppers looking for trendy clothes and accessories.</p>
+
+<p>Tech Stack used : HTML, CSS , JavaScript, React, Chakra UI </p>
+
+Featues :
+<b>Landing Page</b>
+<ol>
+<li>Sticky Navbar with redirection to all routes
+<li>Caraousels to display purchase coupons/categories
+<li>Link redirects to relevant category of homepage
+</ol>
 
 
-
-
-
-
-
+List of dependencies
 
 "@chakra-ui/react": "^2.5.4",
 "@emotion/react": "^11.10.6",
