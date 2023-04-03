@@ -24,6 +24,24 @@ Featues :
 <li>Link redirects to relevant category of homepage
 </ol>
 
+<b>Login</b>
+<ol>
+<li>OTP based login authenticate via firebase
+<li>Protected routes : Cart , payments
+</ol>
+
+<b>Products</b>
+<ol>
+<li>Sort
+<li>Filter
+<li>search
+</ol>
+
+<Admin>
+<p>login
+<p>Add item
+<p>Delete Item
+<p>Inventory page
 
 List of dependencies
 
