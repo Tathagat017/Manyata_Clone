@@ -59,8 +59,15 @@ On this outer women’s page, we have brands of women’s clothing and their acc
 <p>Delete Item
 <p>Inventory page
 
-List of dependencies
+ 
+ 
+ <p>Bag page.
 
+When the user adds the product to the bag the product will be added to the bag page, and from here user will place their order.
+ <p> 
+  
+<b>List of dependencies</b>
+<ul>
 "@chakra-ui/react": "^2.5.4",
 "@emotion/react": "^11.10.6",
 "@emotion/styled": "^11.10.6",
@@ -80,3 +87,4 @@ List of dependencies
 "swiper": "^9.1.1",
 "thunk": "^0.0.1",
 "web-vitals": "^2.1.4"
+ </ul>
