@@ -16,15 +16,18 @@ import CartHomePage from "../../Components/HomePageComponents/CartHomePage";
 // import image1 from "../Images/"
 import Navbar from "./../../Components/NavBar";
 import HomeHeading from "../../Components/HomePageComponents/HomeHeading";
+import { useSelector } from "react-redux";
 
 export const HomePage = () => {
   const [data, setData] = useState({});
-
+  const { cart } = useSelector((state) => state.CartReducer);
+  const { isAuth } = useSelector((state) => state.AuthReducer);
+  console.log("printing data", "auth and cart redux", cart, isAuth);
   function fetchDat() {
     axios
       .get("https://manyta-clone-of-myntra.cyclic.app/AllHomePageImages")
       .then((res) => {
-        console.log(res.data[0].dealOfTheDay);
+        // console.log(res.data[0].dealOfTheDay);
         setData(() => res.data[0]);
       });
   }
@@ -38,8 +41,8 @@ export const HomePage = () => {
     GiftingCards,
     topInfluencerExclusiveStyle,
   } = data;
-  console.log(exclusiveBrands);
-  console.log(dealOfTheDay);
+  // console.log(exclusiveBrands);
+  // console.log(dealOfTheDay);
   useEffect(() => {
     fetchDat();
   }, []);

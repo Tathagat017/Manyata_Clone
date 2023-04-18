@@ -21,7 +21,10 @@ import {
   Select,
   Stack,
 } from "@chakra-ui/react";
+
 import styled from "styled-components";
+import { Link, Navigate } from "react-router-dom";
+
 export const CartPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Input, setInput] = useState("GIFTFORYOU");
@@ -34,7 +37,7 @@ export const CartPage = () => {
 
   useEffect(() => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    // console.log(cart);
+    console.log(cart);
     setLocal(cart);
     let sum =
       local.length > 0 &&
@@ -43,7 +46,7 @@ export const CartPage = () => {
       );
     setBill(sum);
     console.log(sum);
-  }, [Bill, changedBill]);
+  }, []);
   const handleDelete = (id) => {
     let localNew = JSON.parse(localStorage.getItem("cart")) || [];
     console.log(localNew);
@@ -67,6 +70,18 @@ export const CartPage = () => {
     setChangedBill((Bill) => Math.floor(Bill / 2));
     setClicked((prev) => true);
   };
+  const handleOrder = () => {
+    return <Navigate to={"/payments"} />;
+  };
+
+  let data = {
+    image: "",
+    title: "",
+    quantity: 1,
+    discountedPrice: "Rs1233",
+    TotalPriceThisItemInCart: 500,
+  };
+
   return (
     <MAX>
       <Navbar />
@@ -97,21 +112,21 @@ export const CartPage = () => {
               <Button onClick={onOpen} variant={"solid"} colorScheme={"purple"}>
                 Apply Coupon
               </Button>
-              <Text fontSize="xl" color="gray.500">
+              <p fontSize="xl" color="gray.500">
                 Product Details
-              </Text>
-              <Text fontSize="lg" color="gray.500">
+              </p>
+              <p fontSize="lg" color="gray.500">
                 Amount in Cart:{Bill}
-              </Text>
-              <Text fontSize="lg" color="gray.500">
+              </p>
+              <p fontSize="lg" color="gray.500">
                 Convineince fee : Rs 30
-              </Text>
-              <Text fontSize="lg" color="gray.500">
+              </p>
+              <p fontSize="lg" color="gray.500">
                 Coupon Discount :{!clicked ? 0 : "50%"}
-              </Text>
-              <Text fontSize="xl" color="gray.500">
+              </p>
+              <p fontSize="xl" color="gray.500">
                 Total Price : {!clicked ? Bill + 30 : Math.floor(Bill / 2) + 30}
-              </Text>
+              </p>
 
               <Modal
                 blockScrollOnMount={false}
@@ -165,8 +180,8 @@ export const CartPage = () => {
               </Modal>
             </>
           </Box>
-          <Button colorScheme="green" size="md">
-            Order Now
+          <Button colorScheme="green" size="md" onClick={handleOrder}>
+            <Link to="/payments"> Order Now</Link>
           </Button>
         </Box>
       </Flex>

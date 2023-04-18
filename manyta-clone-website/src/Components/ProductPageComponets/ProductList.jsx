@@ -18,6 +18,7 @@ const Main = styled.div`
   height: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   margin-left: 18vw;
   gap: 1.4vw;
   transition: 0.5s ease;

@@ -218,9 +218,9 @@ export const LoginForm = () => {
         setLoading(false);
       });
   }
-  if (isAuth) {
-    return <Navigate to={"/"} />;
-  }
+  // if (isAuth) {
+  //   return <Navigate to={"/"} />;
+  // }
 
   //   const loginSubmit = () => {};
   //   const otpSubmit = () => {};
