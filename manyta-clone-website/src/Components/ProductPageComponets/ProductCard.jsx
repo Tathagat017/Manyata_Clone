@@ -78,7 +78,7 @@ const Main = styled.div`
     } */
   }
   .product-letter {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #272626;
     line-height: 1rem;
     font-family: roboto;
@@ -146,7 +146,12 @@ export const ProductCard = ({ product }) => {
 
     //console.log(+originalStringPrice);
     let cartTotal = +originalStringPrice * quantity;
-    return <h2 className="product-letter"> Subtotal: Rs {cartTotal}</h2>;
+    return (
+      <h2 className="product-letter" style={{ fontSize: "3vh" }}>
+        {" "}
+        Subtotal: Rs {cartTotal}
+      </h2>
+    );
   };
 
   //add to cart

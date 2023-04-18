@@ -20,6 +20,7 @@ import {
 import { HashLoader } from "react-spinners";
 import Navbar from "./../../Components/NavBar";
 import Footer from "../../Components/Footer";
+import { useEffect, useRef, useState } from "react";
 const SpinContainer = styled.div`
   margin-top: ${({ isLoading }) => (isLoading ? "35vh" : "0")};
 `;
@@ -33,6 +34,21 @@ const DIVIDE = styled.div`
 
 export const ProductsPage = () => {
   const { isLoading, isError } = useSelector((state) => state.ProductReducer);
+  const productListRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (productListRef.current) {
+        const { top } = productListRef.current.getBoundingClientRect();
+        setIsScrolled(top < 0);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       <div
@@ -54,11 +70,13 @@ export const ProductsPage = () => {
         )}
       </SpinContainer>
       <DIVIDE>
-        {!isLoading && <SideBar />}
+        {!isLoading && (
+          <SideBar style={{ display: isScrolled ? "none" : "block" }} />
+        )}
         <ProductList />
       </DIVIDE>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

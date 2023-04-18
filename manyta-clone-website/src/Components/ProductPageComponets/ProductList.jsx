@@ -18,6 +18,7 @@ const Main = styled.div`
   height: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   margin-left: 18vw;
   gap: 1.4vw;
   transition: 0.5s ease;
@@ -106,6 +107,16 @@ export const ProductList = () => {
             handlePageChange={handlePage}
           />
         </PaginationWrapper>
+        <img
+          src="./extraFoot.jpg"
+          style={{
+            width: "100%",
+            zIndex: "9",
+            position: "absolute",
+            marginRight: "30vw",
+            marginLeft: "-10vh",
+          }}
+        ></img>
       </ProductDiv>
     )
   );

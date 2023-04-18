@@ -32,8 +32,9 @@ import {
 } from "../../redux/AuthReducer/Action";
 import { Navigate } from "react-router-dom";
 import { Spinner, Button } from "@chakra-ui/react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import BeatLoaderComp from "./BeatLoader";
+import { useEffect } from "react";
 const config = {
   apiKey: "AIzaSyADAOaOsW12VUJkhj8_GUL0HpwfKZK8v-U",
   authDomain: "manyata-66d89.firebaseapp.com",
@@ -212,13 +213,17 @@ export const LoginForm2 = () => {
   const dispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const [ph, setPh] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   // const [loading, setLoading] = useState(false);
   // const [showOTP, setShowOTP] = useState(true);
   // const [user, setUser] = useState(null);
   // const [isAuth, setIsAuth] = useState(false);
   const { showOTP, isLoading, isAuth, user, isError, ErrorMessage } =
     useSelector((state) => state.AuthReducer);
-  console.log(showOTP, isLoading, isAuth, user, isError);
+  //console.log(showOTP, isLoading, isAuth, user, isError);
+
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
@@ -263,7 +268,8 @@ export const LoginForm2 = () => {
       });
   }
 
-  function onOTPVerify() {
+  function onOTPVerify(e) {
+    e.preventDefault();
     // setLoading(true);
     dispatch(loginLoading());
     if (!window.confirmationResult) {
@@ -274,7 +280,7 @@ export const LoginForm2 = () => {
     window.confirmationResult
       .confirm(otp)
       .then(async (res) => {
-        console.log(res);
+        //console.log(res);
         // setUser(res.user);
         dispatch(loginSetUser(res.user));
         // setLoading((prev) => !prev);
@@ -287,16 +293,20 @@ export const LoginForm2 = () => {
         dispatch(loginFailureAction(err));
       });
   }
-  // if (isError) {
-  //   console.log(isError, ErrorMessage);
-  //   return <Navigate to="/error" />;
-  // }
+  if (isError) {
+    console.log(isError, ErrorMessage);
+    return <Navigate to="/error" />;
+  }
 
   if (isAuth) {
-    loginSetPhoneNumber(ph);
-
-    return <Navigate to={"/"} />;
+    return <Navigate to={location.state} />;
   }
+
+  // if (isAuth) {
+  //   loginSetPhoneNumber(ph);
+
+  //   return <Navigate to={"/"} />;
+  // }
 
   //   const loginSubmit = () => {};
   //   const otpSubmit = () => {};
@@ -305,9 +315,7 @@ export const LoginForm2 = () => {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       {user ? (
-        <h2 className="text-center text-white font-medium text-2xl">
-          👍Login Success
-        </h2>
+        <h2>👍Login Success</h2>
       ) : (
         <div className="wrapper">
           {showOTP ? (
@@ -369,9 +377,9 @@ export const LoginForm2 = () => {
                     inputStyles={{ border: "1px solid", margin: "1px" }}
                     className="opt-container"
                   ></OtpInput> */}
-                  <Box width={["100%", "80%", "60%", "40%"]} mx="auto">
-                    <FormControl>
-                      <FormLabel>Enter OTP received on phone:</FormLabel>
+                  <Box width="100%" mx="auto">
+                    <div>
+                      <div>Enter OTP received on phone:</div>
                       <HStack spacing="2" justify="center" c>
                         <PinInput
                           otp
@@ -388,7 +396,7 @@ export const LoginForm2 = () => {
                           <PinInputField />
                         </PinInput>
                       </HStack>
-                    </FormControl>
+                    </div>
                   </Box>
                   {/* {isLoading && (
                   <Spinner
@@ -408,7 +416,7 @@ export const LoginForm2 = () => {
                     spinner={
                       <BeatLoaderComp loading={isLoading} color="white" />
                     }
-                    onClick={onOTPVerify}
+                    onClick={(e) => onOTPVerify(e)}
                   >
                     Verify
                   </Button>

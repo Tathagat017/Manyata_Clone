@@ -12,6 +12,7 @@ import { LoginPage } from "../Pages/Login/LoginPage";
 import { ErrorPage } from "../Pages/Login/ErrorPage";
 import { ProductsPage } from "../Pages/Product/ProductPage";
 import AdminAdd from "./../Pages/Admin/AdminAdd";
+import Payment from "../Components/PaymentPageComponents/Address";
 export const AllRoutes = () => {
   return (
     <Routes>
@@ -51,7 +52,7 @@ export const AllRoutes = () => {
           </PrivateRoute>
         }
       ></Route>
-
+      <Route path="/payments" element={<Payment />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/adminlogin" element={<AdminLogin />} />

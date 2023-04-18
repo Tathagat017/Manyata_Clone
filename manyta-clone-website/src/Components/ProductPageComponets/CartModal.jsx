@@ -152,38 +152,38 @@ export const CartModel = ({ product }) => {
   };
 
   //add to cart
-  function handleAddToCart(product) {
-    // Your logic for adding the item to cart goes here
-    console.log(product);
+  // function handleAddToCart(product) {
+  //   // Your logic for adding the item to cart goes here
+  //   console.log(product);
 
-    // addToCart(product);
-    let originalStringPrice = product.discountedPrice
-      .split("")
-      .splice(4, product.discountedPrice.length)
-      .join("");
+  //   // addToCart(product);
+  //   let originalStringPrice = product.discountedPrice
+  //     .split("")
+  //     .splice(4, product.discountedPrice.length)
+  //     .join("");
 
-    //console.log(+originalStringPrice);
-    let cartTotal = +originalStringPrice * quantity;
-    let productTocart = {
-      ...product,
-      ["quantity"]: quantity,
-      ["TotalPriceThisItemInCart"]: cartTotal,
-    };
-    dispatch(AddToCartAction(productTocart));
-    console.log(cart);
-    // Show a success toaster notification
-    toast({
-      title: "Item added to cart",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-      position: "top",
-      variant: "subtle",
-      bgColor: `cyan.500`,
-      color: "white",
-      size: "lg",
-    });
-  }
+  //   //console.log(+originalStringPrice);
+  //   let cartTotal = +originalStringPrice * quantity;
+  //   let productTocart = {
+  //     ...product,
+  //     ["quantity"]: quantity,
+  //     ["TotalPriceThisItemInCart"]: cartTotal,
+  //   };
+  //   dispatch(AddToCartAction(productTocart));
+  //   console.log(cart);
+  //   // Show a success toaster notification
+  //   toast({
+  //     title: "Item added to cart",
+  //     status: "success",
+  //     duration: 3000,
+  //     isClosable: true,
+  //     position: "top",
+  //     variant: "subtle",
+  //     bgColor: `cyan.500`,
+  //     color: "white",
+  //     size: "lg",
+  //   });
+  // }
   if (isError) return <Box children="error" />;
   return (
     <Box>
@@ -317,7 +317,7 @@ export const CartModel = ({ product }) => {
                         >
                           <Button
                             colorScheme="facebook"
-                            onClick={(e) => handleAddToCart(product)}
+                            // onClick={(e) => handleAddToCart(product)}
                           >
                             Add to Cart
                           </Button>
