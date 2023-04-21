@@ -14,8 +14,10 @@ The website also features a user account system that allows users to create an a
 
 <p>Overall, the Myntra Clone is a well-designed e-commerce website that provides an excellent user experience for shoppers looking for trendy clothes and accessories.</p>
 <p>Team-Members.
-Tathagat
-Aakash Chakravarty
+ <ol>
+  <li>Tathagat</li>
+  <li>Aakash Chakravarty</li>
+  </ol>
 </p>
 
 <p>Tech Stack used : HTML, CSS , JavaScript, React, Chakra UI </p>
