@@ -2,7 +2,7 @@
 
 <h1>A clone of Myntra website</h1>
 
-<span><h2>Deployement of netlify</h2><a href="https://effortless-pasca-3465fc.netlify.app/">Manyata Website :https://effortless-pasca-3465fc.netlify.app</a></span> 
+<span><h2>Deployement on netlify</h2><a href="https://effortless-pasca-3465fc.netlify.app/">Manyata Website :https://effortless-pasca-3465fc.netlify.app</a></span> 
 <h2>Backend JSON server deployment : https://manyta-clone-of-myntra.cyclic.app/</h2>
 
 <h2>Summary :</h2>
