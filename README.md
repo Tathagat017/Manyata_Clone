@@ -3,6 +3,7 @@
 <h1>A clone of Myntra website</h1>
 
 <span><h2>Deployement of netlify</h2><a href="https://effortless-pasca-3465fc.netlify.app/">Manyata Website :https://effortless-pasca-3465fc.netlify.app</a></span> 
+<h2>Backend JSON server deployment : https://manyta-clone-of-myntra.cyclic.app/</h2>
 
 <h2>Summary :</h2>
 <p>The Manyata Clone is a website built using React, Chakra UI, HTML, and CSS. The website is designed to provide an online platform for users to shop for clothes and accessories similar to Myntra, a popular Indian e-commerce company.
