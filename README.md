@@ -16,8 +16,6 @@ The website also features a user account system that allows users to create an a
 <p>Team-Members.
 Tathagat
 Aakash Chakravarty
- Pawan Saini
-  
 </p>
 
 <p>Tech Stack used : HTML, CSS , JavaScript, React, Chakra UI </p>
