@@ -56,6 +56,14 @@ export const ProductsPage = () => {
       >
         {!isLoading && <Navbar />}
       </div>
+      <marquee behavior="scroll" direction="left" scrollamount="22">
+        <h2
+          style={{
+            width: "150px",
+            height: "55px",
+          }}
+        ></h2>
+      </marquee>
       <SpinContainer isLoading={isLoading}>
         {isLoading && (
           <Spinner

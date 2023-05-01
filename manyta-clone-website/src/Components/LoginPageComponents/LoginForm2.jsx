@@ -244,6 +244,7 @@ export const LoginForm2 = () => {
     console.log("onSignup");
     // setLoading(true);
     dispatch(loginRequestAction);
+
     onCaptchVerify();
 
     const appVerifier = window.recaptchaVerifier;
@@ -299,6 +300,7 @@ export const LoginForm2 = () => {
   }
 
   if (isAuth) {
+    loginSetPhoneNumber(ph);
     return <Navigate to={location.state} />;
   }
 
@@ -313,7 +315,13 @@ export const LoginForm2 = () => {
   return (
     <Main>
       <Toaster toastOptions={{ duration: 4000 }} />
-      <div id="recaptcha-container"></div>
+      <div
+        id="recaptcha-container"
+        style={{
+          zIndex: "999999999999999999999999999999999",
+          position: "fixed",
+        }}
+      ></div>
       {user ? (
         <h2>👍Login Success</h2>
       ) : (

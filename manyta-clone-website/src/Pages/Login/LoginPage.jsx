@@ -5,8 +5,16 @@ import Navbar from "../../Components/NavBar";
 import Footer from "./../../Components/Footer";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { Spinner, Button } from "@chakra-ui/react";
+import { Spinner, Button, Flex, Spacer } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import {
+  BsTelephoneFill,
+  BsFillBookmarkHeartFill,
+  BsFillCartFill,
+  BsFillStarFill,
+  BsPlusLg,
+} from "react-icons/bs";
+import { UserPage } from "./UserPage";
 const LOGINWRAP = styled.div`
   padding: 5%;
   padding-left: 0;
@@ -20,32 +28,24 @@ const Check = styled.div`
   margin-bottom: 3vh;
 `;
 
+const Main = styled.div`
+  background-color: #dbd4ce;
+`;
 export const LoginPage = () => {
   const { isAuth } = useSelector((state) => state.AuthReducer);
+
+  const handleLogout = () => {
+    window.location.reload();
+  };
+
   if (isAuth) {
-    return (
-      <div>
-        <Navbar />
-        <Check></Check>
-        <Check></Check>
-        <Check>
-          {" "}
-          <marquee behavior="scroll" direction="left" scrollamount="12">
-            <h1>{`logged in- profile page`}</h1>
-          </marquee>
-        </Check>
-        <RouterLink to="/">
-          <Button colorScheme="pink" variant="ghost">
-            Go To Home Page
-          </Button>{" "}
-        </RouterLink>
-      </div>
-    );
+    return <UserPage />;
   }
   // return <LoginForm />;
   return (
     <div>
       <Navbar />
+
       <LOGINWRAP>
         <LoginForm2 />
         {/* <LoginForm2 /> */}

@@ -22,22 +22,35 @@ import {
   RadioGroup,
   Grid,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import Navbar from "./../../Components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link as RouterLink } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
+import GetLocation from "./../../Pages/Order/Address";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { GiDeliveryDrone } from "react-icons/gi";
 const Payment = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const toast = useToast();
   const [price, setPrice] = React.useState(0);
   const [cartData, setCartData] = React.useState([]);
   const [cardDetail, setCardDetail] = useState("");
   const [checkout, setCheckout] = useState(false);
-
+  const [order, setOrder] = useState([]);
+  const [cart, setCart] = useState([]);
   const navigate = useNavigate();
+  console.log(cart);
+
+  useEffect(() => {
+    let n = localStorage.getItem("cart");
+    n = JSON.parse(n);
+    setCart(n);
+  }, []);
   // redux start
   const isAuth = true;
   let dispatch = useDispatch();
@@ -54,6 +67,21 @@ const Payment = () => {
 
   const handlepayment = (e) => {
     setCardDetail(e);
+  };
+
+  const handleOrderPlaced = () => {
+    localStorage.setItem("orderPlaced", cart);
+    return toast({
+      title: "Order Placed Successfully",
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+      variant: "subtle",
+      bgColor: `cyan.500`,
+      color: "white",
+      size: "lg",
+    });
   };
 
   // function HandleCheckOut() {
@@ -74,6 +102,13 @@ const Payment = () => {
         <div>
           <Navbar />
         </div>
+
+        <marquee behavior="scroll" direction="right" scrollamount="15">
+          <CiDeliveryTruck size={"300px"} marginTop={"100px"} />
+        </marquee>
+        <marquee behavior="scroll" direction="left right" scrollamount="15">
+          <GiDeliveryDrone size={"100px"} />
+        </marquee>
         <Grid
           gridTemplateColumns={{ base: "80%", md: "60% 40%" }}
           w={{ base: "100%", md: "70%", lg: "70%" }}
@@ -111,6 +146,18 @@ const Payment = () => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     setCheckout(true);
+                    handleOrderPlaced();
+                    return toast({
+                      title: "Order Placed Successfully",
+                      status: "info",
+                      duration: 3000,
+                      isClosable: true,
+                      position: "top",
+                      variant: "subtle",
+                      bgColor: `cyan.900`,
+                      color: "white",
+                      size: "lg",
+                    });
                   }}
                 >
                   <Card border="1px" borderColor="blue.500" margin="18px 0">
@@ -208,24 +255,41 @@ const Payment = () => {
                   <Text fontSize={{ base: "16px" }} textAlign="left" mb="10px">
                     Cash on Delivery
                   </Text>
-                  <Button
-                    w="full"
-                    onClick={(e) => {
-                      setCheckout(true);
-                    }}
-                    cursor={"pointer"}
-                    fontSize={{ base: "16px" }}
-                    bg={"green.400"}
-                    colorScheme="green"
-                    border={"white"}
-                  >
-                    Submit
-                  </Button>
+                  <RouterLink to="/">
+                    <Button
+                      w="full"
+                      onClick={(e) => {
+                        setCheckout(true);
+                        handleOrderPlaced();
+                        return toast({
+                          title: "Order Placed Successfully",
+                          status: "info",
+                          duration: 3000,
+                          isClosable: true,
+                          position: "top",
+                          variant: "subtle",
+                          bgColor: `cyan.500`,
+                          color: "white",
+                          size: "lg",
+                        });
+                      }}
+                      cursor={"pointer"}
+                      fontSize={{ base: "16px" }}
+                      bg={"green.400"}
+                      colorScheme="green"
+                      border={"white"}
+                    >
+                      Submit
+                    </Button>
+                  </RouterLink>
                 </Box>
               ) : null}
             </Grid>
           </Box>
-
+          <Box ml={"10vw"}>
+            <Text fontSize={"2xl"}>Addresss :</Text>
+            <GetLocation />
+          </Box>
           {/* <Box padding={"10px"}>
             <Text fontWeight={"600"} fontSize={"20px"}>
               Price Details{" "}

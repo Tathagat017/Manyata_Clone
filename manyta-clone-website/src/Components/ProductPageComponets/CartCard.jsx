@@ -47,7 +47,7 @@ import styled from "styled-components";
 
 const Div = styled.div`
   width: 100%;
-
+  height: 250px;
   :first-child {
     margin-top: 8vh;
   }
@@ -82,6 +82,7 @@ export const CartCard = ({ product, onDelete, item }) => {
           boxSize="25vh"
           objectFit="cover"
           boxShadow="lg"
+          ml={2}
         />
         <Box flex="2" ml={4}>
           <Text fontWeight="black" color="gray.800">

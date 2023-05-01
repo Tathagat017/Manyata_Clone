@@ -24,6 +24,7 @@ import {
 
 import styled from "styled-components";
 import { Link, Navigate } from "react-router-dom";
+import GetLocation from "./../Order/Address";
 
 export const CartPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,22 +35,28 @@ export const CartPage = () => {
   const [changedBill, setChangedBill] = useState(0);
   const [clicked, setClicked] = useState(false);
   const [local, setLocal] = useState([]);
-
+  const { cartInStore } = useSelector((state) => state.CartReducer);
+  const [id, setId] = useState("");
   useEffect(() => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     console.log(cart);
+    let totalSum;
+    cart.map((el) => {
+      totalSum += el.TotalPriceThisItemInCart;
+    });
+
     setLocal(cart);
+    console.log(cart);
     let sum =
       local.length > 0 &&
       local?.reduce(
         (a, b) => a.TotalPriceThisItemInCart + b.TotalPriceThisItemInCart
       );
     setBill(sum);
-    console.log(sum);
   }, []);
-  const handleDelete = (id) => {
-    let localNew = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(localNew);
+
+  let localNew;
+  const handleDelete = (i) => {
     // local =
     //   local.length > 0 &&
     //   local?.filter((el) => {
@@ -59,8 +66,17 @@ export const CartPage = () => {
     //       return true;
     //     }
     //   });
+    console.log(i);
+    localNew = local.filter((el) => {
+      //console.log(el.id);
+      return +el.id !== +i;
+    });
+
+    console.log(localNew);
+    setLocal(localNew);
     localStorage.setItem("cart", JSON.stringify(localNew));
   };
+
   const handleCoupon = (e) => {
     console.log(e.target.value);
     setInput(e.target.value);
@@ -81,22 +97,26 @@ export const CartPage = () => {
     discountedPrice: "Rs1233",
     TotalPriceThisItemInCart: 500,
   };
-
+  let sum = 0;
+  local.map((el) => {
+    sum += +el.TotalPriceThisItemInCart;
+  });
   return (
     <MAX>
       <Navbar />
       <h1>Cart</h1>
+
       <Flex w={"100vw"}>
         <Box w={"70%"}>
           {local.length > 0 &&
             local.map((el, i) => {
               return (
                 <Box>
-                  <Box mt={4}>
+                  <Box mt={4} ml={3}>
                     <CartCard
                       product={el}
                       key={el.id}
-                      item={i}
+                      item={el.id}
                       onDelete={handleDelete}
                       local={local}
                     />
@@ -116,7 +136,8 @@ export const CartPage = () => {
                 Product Details
               </p>
               <p fontSize="lg" color="gray.500">
-                Amount in Cart:{Bill}
+                Amount in Cart:
+                {sum}
               </p>
               <p fontSize="lg" color="gray.500">
                 Convineince fee : Rs 30
@@ -125,7 +146,7 @@ export const CartPage = () => {
                 Coupon Discount :{!clicked ? 0 : "50%"}
               </p>
               <p fontSize="xl" color="gray.500">
-                Total Price : {!clicked ? Bill + 30 : Math.floor(Bill / 2) + 30}
+                Total Price : {!clicked ? sum + 30 : Math.floor(sum / 2) + 30}
               </p>
 
               <Modal
@@ -180,7 +201,7 @@ export const CartPage = () => {
               </Modal>
             </>
           </Box>
-          <Button colorScheme="green" size="md" onClick={handleOrder}>
+          <Button colorScheme="purple" size="md" onClick={handleOrder}>
             <Link to="/payments"> Order Now</Link>
           </Button>
         </Box>
