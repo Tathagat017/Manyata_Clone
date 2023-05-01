@@ -24,6 +24,7 @@ import {
 
 import styled from "styled-components";
 import { Link, Navigate } from "react-router-dom";
+import GetLocation from "./../Order/Address";
 
 export const CartPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -104,6 +105,7 @@ export const CartPage = () => {
     <MAX>
       <Navbar />
       <h1>Cart</h1>
+
       <Flex w={"100vw"}>
         <Box w={"70%"}>
           {local.length > 0 &&

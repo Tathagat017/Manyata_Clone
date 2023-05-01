@@ -29,7 +29,9 @@ import Navbar from "./../../Components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-
+import GetLocation from "./../../Pages/Order/Address";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { GiDeliveryDrone } from "react-icons/gi";
 const Payment = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -100,6 +102,13 @@ const Payment = () => {
         <div>
           <Navbar />
         </div>
+
+        <marquee behavior="scroll" direction="right" scrollamount="15">
+          <CiDeliveryTruck size={"300px"} marginTop={"100px"} />
+        </marquee>
+        <marquee behavior="scroll" direction="left right" scrollamount="15">
+          <GiDeliveryDrone size={"100px"} />
+        </marquee>
         <Grid
           gridTemplateColumns={{ base: "80%", md: "60% 40%" }}
           w={{ base: "100%", md: "70%", lg: "70%" }}
@@ -277,7 +286,10 @@ const Payment = () => {
               ) : null}
             </Grid>
           </Box>
-
+          <Box ml={"10vw"}>
+            <Text fontSize={"2xl"}>Addresss :</Text>
+            <GetLocation />
+          </Box>
           {/* <Box padding={"10px"}>
             <Text fontWeight={"600"} fontSize={"20px"}>
               Price Details{" "}
