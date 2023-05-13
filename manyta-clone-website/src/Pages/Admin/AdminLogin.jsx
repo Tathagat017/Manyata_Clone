@@ -21,7 +21,7 @@ export function AdminLogin() {
   const { token, isauth } = useSelector((store) => store.AdminReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [log, setlog] = React.useState({ email: "", password: "" });
+  const [log, setlog] = React.useState({ email: "eve.holt@reqres.in", password: "eve.holt@reqres.in" });
 
   const handlechange = (e) => {
     log[e.target.name] = e.target.value;
@@ -60,6 +60,7 @@ export function AdminLogin() {
               <Input
                 type="email"
                 placeholder="email"
+                 value={'eve.holt@reqres.in'}
                 name="email"
                 onChange={(e) => handlechange(e)}
               />
@@ -68,6 +69,7 @@ export function AdminLogin() {
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
+                value={'eve.holt@reqres.in'}
                 placeholder="password"
                 name="password"
                 onChange={(e) => handlechange(e)}
