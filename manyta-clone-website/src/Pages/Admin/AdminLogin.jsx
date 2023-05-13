@@ -26,6 +26,7 @@ export function AdminLogin() {
   const handlechange = (e) => {
     log[e.target.name] = e.target.value;
     setlog(log);
+    //hi
   };
   const handlesubmit = () => {
     console.log(log);
