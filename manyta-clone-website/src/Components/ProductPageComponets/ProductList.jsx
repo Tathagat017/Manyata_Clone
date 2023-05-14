@@ -62,6 +62,7 @@ export const ProductList = () => {
       discount_gte: searchParams.getAll("discount_gte"),
       _page: page,
       _limit: 16,
+      q:searchParams.get("q")
     });
 
     // console.log(searchParams.getAll("_page"));
@@ -78,6 +79,7 @@ export const ProductList = () => {
         discount_gte: searchParams.getAll("discount_gte"),
         _page: searchParams.get("_page"),
         _limit: 16,
+        q:searchParams.get("q")
       },
     };
     console.log(paramObj);

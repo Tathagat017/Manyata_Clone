@@ -71,6 +71,7 @@ export const SideBar = ({ style }) => {
   const initalBrand = searchParams.getAll("brand");
   const initialRating = searchParams.getAll("rating_gte");
 
+
   const [gender, setGender] = useState(initialGender || []);
   const [item, setItem] = useState(initialitemType || []);
   const [brand, setBrand] = useState(initalBrand || []);
@@ -163,7 +164,9 @@ export const SideBar = ({ style }) => {
       discount_gte: discount,
       _page: searchParams.get("_page"),
       _limit: 16,
+      
     };
+    if(searchParams.get("q")){params["q"]=searchParams.get("q")}
     setSearchParams(params);
   }, [gender, item, brand, rating, discount]);
   const { value } = style;
