@@ -5,8 +5,33 @@ import DropDown from "./DropDown";
 import logo from "../Data/Images/mlogo.jpg";
 import styled from "styled-components";
 import ProfileDropDown from "./HomePageComponents/ProfileDropDown";
+import { useSearchParams,useNavigate,useLocation } from "react-router-dom";
+import { useDebounce } from "../Hooks/useDebounce";
+
 const Navbar = () => {
-  console.log("navbar");
+const [searchparams,setsearchparams]=useSearchParams();
+const [value,setvalue]=React.useState("");
+const navigate=useNavigate();
+const location=useLocation();
+
+const setsearch=(val)=>{
+  let obj={};
+if(searchparams.get("_page")){
+  obj["_page"]=searchparams.get("_page");
+}
+if(searchparams.get("_limit")){
+  obj["_limit"]=searchparams.get("_limit");
+}
+  obj["q"]=val;
+  // setvalue(val);
+ setsearchparams(obj);
+console.log("hellooooooo",val);
+}
+const handlechange=(e)=>{
+  setsearch(e);
+}
+const debounce=useDebounce(handlechange,4000);
+
   return (
     <DIV>
       <Flex
@@ -61,6 +86,9 @@ const Navbar = () => {
             bg={"#F7F5F2"}
             border="none"
             borderRadius={"3px"}
+           
+onClick={()=>{if(location.pathname!=="/products"){navigate("/products")}}}
+onChange={(e)=>{debounce(e.target.value)}}
           />
         </HStack>
         <HStack justifyContent={"space-evenly"} gap="20px">
