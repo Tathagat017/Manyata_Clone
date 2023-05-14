@@ -86,7 +86,7 @@ const debounce=useDebounce(handlechange,4000);
             bg={"#F7F5F2"}
             border="none"
             borderRadius={"3px"}
-           
+           defaultValue={searchparams.get("q")}
 onClick={()=>{if(location.pathname!=="/products"){navigate("/products")}}}
 onChange={(e)=>{debounce(e.target.value)}}
           />
