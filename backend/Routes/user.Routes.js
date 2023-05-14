@@ -1,5 +1,5 @@
 const express=require("express");
-const { userModel } = require("../modules/user.module");
+const { userModel } = require("../modules/user.Module");
 const userRouter=express.Router();
 const {auth}=require("../middlewares/auth");
 const bcrypt=require("bcrypt");
