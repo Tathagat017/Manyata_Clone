@@ -10,6 +10,7 @@ import {
   LOGIN_SET_USER,
   LOGIN_LOADING,
   LOGIN_LOADING_DONE,
+  SIGN_FAILURE,SIGN_REQUEST,SIGN_SUCCESS
 } from "./ActionType";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -89,3 +90,21 @@ export const loginLoading = () => {
 export const loginLoadingDone = () => {
   return { type: LOGIN_LOADING_DONE };
 };
+
+
+export const loginsuccessaction = (payload) => {
+  return { type: LOGIN_SUCCESS,payload };
+};
+export const signup=(obj)=>(dispatch)=>{
+dispatch({type:SIGN_REQUEST});
+return axios.post("https://lazy-pear-catfish-wear.cyclic.app/users/register",obj)
+.then((res)=>{dispatch({type:SIGN_SUCCESS,payload:res.data})})
+.catch((err)=>dispatch({type:SIGN_FAILURE}));
+}
+
+export const login=(obj)=>(dispatch)=>{
+ dispatch({type:LOGIN_REQUEST});
+ return axios.post("https://lazy-pear-catfish-wear.cyclic.app/users/login",obj)
+  .then((res)=>{dispatch(loginsuccessaction(res.data.token))})
+  .catch((err)=>dispatch({type:LOGIN_FAILURE}));
+  }

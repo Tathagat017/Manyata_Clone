@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
 
   console.log(location);
 
-  return isAuth ? (
+  return localStorage.getItem("token") ? (
     children
   ) : (
     <Navigate to={"/login"} state={location.pathname} replace={true} />
