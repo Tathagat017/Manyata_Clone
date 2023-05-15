@@ -10,8 +10,8 @@ console.log(signdetails);
 const dispatch=useDispatch();
 const [loading,setloading1]=React.useState(false);
   return (
-    <Box  w={"50%"} backgroundColor={'rgb(255,222,222)'} padding={'4%'} paddingTop={'5%'} border={'2px solid blue'} margin={'auto'}>
-        <HStack w={'100%'} border={'2px solid brown'} justifyContent={'space-evenly'}>
+    <Box  w={"50%"} backgroundColor={'rgb(255,222,222)'} padding={'4%'} paddingTop={'5%'} border={'px solid blue'} margin={'auto'}>
+        <HStack w={'100%'} border={'px solid brown'} justifyContent={'space-evenly'}>
     <Box p={'0.3rem'} _hover={{backgroundColor:"pink",color:"green",cursor:"pointer"}} onClick={()=>{setloading(true);
     setTimeout(()=>{
         setchecksignuppage(false);setloading(false);
@@ -25,7 +25,7 @@ const [loading,setloading1]=React.useState(false);
         }} fontWeight={'extrabold'} fontSize={'3xl'}>SignUp</Box>
         </HStack>
         <Box>
-        <Image w={'100%'}  margin={'auto'} border={'2px solid brown'} src='https://assets.myntassets.com/f_webp,dpr_1.5,q_auto,w_400,c_limit,fl_progressive/assets/images/2023/2/7/59a76460-3a85-4d4b-b517-faef119c50551675792734635-offer-banner-200-600x240-code-_-MYNTRA200.jpg' alt="memo" />
+        <Image w={'100%'}  margin={'auto'} border={'px solid brown'} src='https://assets.myntassets.com/f_webp,dpr_1.5,q_auto,w_400,c_limit,fl_progressive/assets/images/2023/2/7/59a76460-3a85-4d4b-b517-faef119c50551675792734635-offer-banner-200-600x240-code-_-MYNTRA200.jpg' alt="memo" />
         </Box>
        
 <VStack rowGap={'1.5rem'}>
