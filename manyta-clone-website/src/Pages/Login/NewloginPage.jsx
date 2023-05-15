@@ -10,7 +10,7 @@ export const NewloginPage = () => {
   return (
     <Box backgroundColor={'rgb(250,240,240)'}>
          <Navbar />
-         <Box padding={'8rem 0rem 8rem 0rem'} border={'2px solid green'} margin={'auto'}>
+         <Box padding={'8rem 0rem 8rem 0rem'} border={'px solid green'} margin={'auto'}>
             {loading?<Flex  margin={'auto'} justifyContent={'space-evenly'}>
                 <img   src="https://media2.giphy.com/media/jAYUbVXgESSti/giphy.gif?cid=ecf05e477kfkcmsxlpbm4cqz2h1spro00a3tg2psla0u1ltg&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="memo"  />
             </Flex>
