@@ -7,7 +7,7 @@ import {
   LOGIN_SET_OTP,
   LOGIN_SET_USER,
   LOGIN_LOADING,
-  LOGIN_LOADING_DONE,
+  LOGIN_LOADING_DONE,  SIGN_FAILURE,SIGN_REQUEST,SIGN_SUCCESS
 } from "./ActionType";
 const initialState = {
   isLoading: false,
@@ -18,6 +18,8 @@ const initialState = {
   ph: "",
   showOTP: true,
   otp: "",
+  token:"",
+  message:""
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,6 +34,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         isAuth: true,
+        token:payload
       };
     }
     case LOGIN_FAILURE: {
@@ -39,7 +42,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: true,
-        ErrorMessage: payload,
+        // ErrorMessage: payload,
       };
     }
     case LOGIN_SET_PHONE_NUMBER: {
@@ -69,6 +72,12 @@ export const reducer = (state = initialState, action) => {
     case LOGIN_LOADING_DONE: {
       return { ...state, isLoading: false };
     }
+
+case SIGN_REQUEST:return{...state,isLoading:true}
+case SIGN_SUCCESS:return{...state,isLoading:false,message:payload}
+case SIGN_FAILURE:return{...state,isLoading:false,isError:true}
+
+
     default: {
       return state;
     }

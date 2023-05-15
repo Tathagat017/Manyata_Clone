@@ -44,13 +44,13 @@ export const LoginPage = () => {
   // return <LoginForm />;
   return (
     <div>
-      <Navbar />
+     
 
       <LOGINWRAP>
         <LoginForm2 />
         {/* <LoginForm2 /> */}
       </LOGINWRAP>
-      <Footer />
+     
     </div>
   );
 };

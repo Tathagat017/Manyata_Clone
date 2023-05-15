@@ -7,3 +7,6 @@ export const LOGIN_SET_OTP = "LOGIN_SET_OTP";
 export const LOGIN_SET_USER = "LOGIN_SET_USER";
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_LOADING_DONE = "LOGIN_LOADING_DONE";
+export const SIGN_REQUEST = "SIGN_REQUEST";
+export const SIGN_SUCCESS = "SIGN_SUCCESS";
+export const SIGN_FAILURE = "SIGN_FAILURE";
