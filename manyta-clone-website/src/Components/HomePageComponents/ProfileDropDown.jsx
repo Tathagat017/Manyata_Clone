@@ -3,6 +3,7 @@ import { Text, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 const ProfileDropDown = ({ title, color }) => {
+  const [get,setget]=React.useState(false);
   return (
     <DIV>
       <div className="dropdown">
@@ -25,9 +26,11 @@ const ProfileDropDown = ({ title, color }) => {
               Welcome
             </Text>
             <p>To access account and manage orders</p>
-            <Link to="/login">
-              <button>LOGIN/SIGNUP</button>
-            </Link>
+            {localStorage.getItem("token")?
+          <button onClick={()=>{localStorage.removeItem("token");setget(!get)}}>LOGOUT</button>:<Link to="/login">
+          <button>LOGIN/SIGNUP</button>
+        </Link>
+          }
             <Link to="adminlogin">
               <button>Admin LOGIN </button>
             </Link>
