@@ -1,6 +1,7 @@
 # screeching-idea-7572
 
 <h1>A clone of Myntra website</h1>
+<img width="960" alt="2023-05-29 (4)" src="https://github.com/Tathagat017/Manyata_Clone/assets/112754696/38d09d62-d6ff-4acf-8cc2-24478805c1ce">
 
 <span><h2>Deployement on netlify</h2><a [href=>Manyata](https://screeching-idea-7572-two.vercel.app/) Website :https://effortless-pasca-3465fc.netlify.app</a></span> 
 <h2>Backend JSON server deployment : https://manyta-clone-of-myntra.cyclic.app/</h2>
