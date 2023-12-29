@@ -52,12 +52,12 @@ const debounce=useDebounce(handlechange,4000);
           </MyLink>
 
           <Flex justifyContent={"space-around"} gap="1.5rem">
-            <MyLink to="/products?gender=Men&_page=null&_limit=16">
+            {/* <MyLink to="/products?gender=Men&_page=null&_limit=16"> */}
               <DropDown title={"MEN"} color={"red"} />{" "}
-            </MyLink>
-            <MyLink to="/products?gender=Women&_page=null&_limit=16">
+            {/* </MyLink> */}
+            {/* <MyLink to="/products?gender=Women&_page=null&_limit=16"> */}
               <DropDown title={"WOMEN"} color={"#0db7af"} />
-            </MyLink>
+            {/* </MyLink> */}
             <DropDown title={"KID"} color={"orange"} />
           </Flex>
           <HStack gap={"0.5rem"}>

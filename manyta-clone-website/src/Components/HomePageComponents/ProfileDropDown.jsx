@@ -2,7 +2,12 @@ import React from "react";
 import { Text, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {useSelector,useDispatch} from "react-redux";
+import {logout} from "../../redux/AuthReducer/Action";
 const ProfileDropDown = ({ title, color }) => {
+  const [toggle,settoggle]=React.useState(false);
+  const {isloggedin}=useSelector((store)=>store.AuthReducer);
+  const dispatch=useDispatch();
   return (
     <DIV>
       <div className="dropdown">
@@ -25,9 +30,13 @@ const ProfileDropDown = ({ title, color }) => {
               Welcome
             </Text>
             <p>To access account and manage orders</p>
-            <Link to="/login">
-              <button>LOGIN/SIGNUP</button>
-            </Link>
+            
+              {isloggedin?
+            <button onClick={()=>{sessionStorage.removeItem("token");dispatch(logout());settoggle(!toggle)}}>Logout</button>
+            :
+            <Link to="/login"><button>Login / SignUp</button></Link>  
+            }
+            
             <Link to="adminlogin">
               <button>Admin LOGIN </button>
             </Link>

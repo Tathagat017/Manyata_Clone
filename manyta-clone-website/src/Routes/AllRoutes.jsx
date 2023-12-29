@@ -13,6 +13,7 @@ import { ErrorPage } from "../Pages/Login/ErrorPage";
 import { ProductsPage } from "../Pages/Product/ProductPage";
 import AdminAdd from "./../Pages/Admin/AdminAdd";
 import Payment from "../Components/PaymentPageComponents/Address";
+import { NewloginPage } from "../Pages/Login/NewLoginPage";
 
 export const AllRoutes = () => {
   return (
@@ -28,7 +29,7 @@ export const AllRoutes = () => {
           </PrivateRoute>
         }
       />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<NewloginPage />} />
       <Route
         path="/wishlist"
         element={
