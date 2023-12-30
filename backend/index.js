@@ -3,7 +3,7 @@ const app=express();
 const {connection}=require("./db");
 const cors=require("cors");
 const {userRouter}=require("./Routes/user.Routes");
-
+const {productRouter}=require("./Routes/product.Route.js");
 require("dotenv").config();
 
 
@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 app.use("/users",userRouter);
-
+app.use("/products",productRouter);
 
 app.get("/",(req,res)=>{
     res.send("hello");
