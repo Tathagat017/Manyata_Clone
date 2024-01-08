@@ -8,7 +8,7 @@ import {
   Box,
   Spinner,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../Components/Footer";
 import Caraousel from "../../Components/HomePageComponents/Caraousel";
@@ -17,12 +17,15 @@ import CartHomePage from "../../Components/HomePageComponents/CartHomePage";
 import Navbar from "./../../Components/NavBar";
 import HomeHeading from "../../Components/HomePageComponents/HomeHeading";
 import { useSelector } from "react-redux";
+import { ProductContext } from "../../ContextApi/ProductContext";
 
 export const HomePage = () => {
   const [data, setData] = useState({});
   const { cart } = useSelector((state) => state.CartReducer);
   const { isAuth } = useSelector((state) => state.AuthReducer);
-  console.log("printing data", "auth and cart redux", cart, isAuth);
+  // console.log("printing data", "auth and cart redux", cart, isAuth);
+    const useProdcontext=useContext(ProductContext);
+  console.log(useProdcontext);
   function fetchDat() {
     axios
       .get("https://manyta-clone-of-myntra.cyclic.app/AllHomePageImages")
@@ -49,6 +52,7 @@ export const HomePage = () => {
 
   return (
     <div>
+     
       <Navbar />
       <Caraousel />
       <HomeHeading heading="DEAL OF THE DAY" />

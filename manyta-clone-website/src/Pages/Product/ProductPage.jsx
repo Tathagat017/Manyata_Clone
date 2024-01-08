@@ -1,5 +1,5 @@
 import { ProductList } from "./../../Components/ProductPageComponets/ProductList";
-import { SideBar } from "./../../Components/ProductPageComponets/SideBar";
+ import { SideBar } from "./../../Components/ProductPageComponets/SideBar";
 import {
   Flex,
   Spinner,
@@ -20,50 +20,43 @@ import {
 import { HashLoader } from "react-spinners";
 import Navbar from "./../../Components/NavBar";
 import Footer from "../../Components/Footer";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { ProductContext } from "../../ContextApi/ProductContext";
 const SpinContainer = styled.div`
   margin-top: ${({ isLoading }) => (isLoading ? "35vh" : "0")};
 `;
 
-const DIVIDE = styled.div`
-  width: 100vw;
-  height: 95vh;
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const ProductsPage = () => {
   const { isLoading, isError } = useSelector((state) => state.ProductReducer);
-  const productListRef = useRef(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (productListRef.current) {
-        const { top } = productListRef.current.getBoundingClientRect();
-        setIsScrolled(top < 0);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const {setfilter,filters,togglefilter,settogglefilter}=React.useContext(ProductContext);
+  const [searchParams, setSeachParams] = useSearchParams();
+  const initialfilters=useRef({
+    gender:searchParams.getAll("gender")||[],
+    itemType:searchParams.getAll("itemType")||[],
+    brand:searchParams.getAll("brand")||[],
+    rating:searchParams.getAll("rating")||[],
+    discount:searchParams.getAll("discount")||[],
+    discountedPrice:searchParams.get("discountedPrice")||"",
+    price:searchParams.getAll("price")||[],
+});
 
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [toggle,settoggle]=React.useState(false);
+ 
   return (
-    <div>
-      <div
-        style={{ position: "fixed", zIndex: "99999999", marginBottom: "2vh" }}
-      >
-        {!isLoading && <Navbar />}
-      </div>
-      <marquee behavior="scroll" direction="left" scrollamount="22">
+    <Box >
+    <Box border={'0px solid green'} >
+      {!isLoading && <Navbar />}
+      {/* <marquee behavior="scroll" direction="left" scrollamount="22">
         <h2
           style={{
             width: "150px",
             height: "55px",
           }}
         ></h2>
-      </marquee>
+      </marquee> */}
       <SpinContainer isLoading={isLoading}>
         {isLoading && (
           <Spinner
@@ -77,14 +70,17 @@ export const ProductsPage = () => {
           />
         )}
       </SpinContainer>
-      <DIVIDE>
+      <Box w={'100%'} h={'auto'} justifyContent={'space-between'} display={'flex'} >
         {!isLoading && (
-          <SideBar style={{ display: isScrolled ? "none" : "block" }} />
+          <SideBar   toggle={toggle} settoggle={settoggle}  initialfilters={initialfilters}  />
+       
         )}
-        <ProductList />
-      </DIVIDE>
+        <ProductList toggle={toggle} settoggle={settoggle} initialfilters={initialfilters} />
+      </Box>
 
-      {/* <Footer /> */}
-    </div>
+      
+    </Box>
+    <Footer />
+    </Box>
   );
 };

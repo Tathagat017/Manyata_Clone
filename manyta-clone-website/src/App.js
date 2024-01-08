@@ -1,12 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { AllRoutes } from "./Routes/AllRoutes";
-import { useEffect } from "react";
+import { ProductContext } from "./ContextApi/ProductContext";
+
 function App() {
 
-  return (
+ return (
     <div className="App">
       <AllRoutes />
+    
     </div>
   );
 }

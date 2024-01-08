@@ -17,7 +17,8 @@ const DropDown = ({ title, color }) => {
             >
               Topwear
             </Text>
-            <a href="/products?itemType=T-shirt&_page=1&_limit=16">T-Shirts</a>
+            {/* ?itemType=T-shirt&_page=1&_limit=16 */}
+            <a href="/products">T-Shirts</a>
             <a href="/products?itemType=T-shirt&_page=1&_limit=16">
               Casual Shirts
             </a>

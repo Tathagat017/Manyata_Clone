@@ -3,6 +3,9 @@ import {
   GET_PRODUCT_FAILURE,
   GET_PRODUCT_SUCCESS,
   GET_PRODUCT_PAGES,
+  GET_SINGLE_PRODUCT_REQUEST,
+  GET_SINGLE_PRODUCT_SUCCESS,
+  GET_SINGLE_PRODUCT_FAILURE,
 } from "./ActionType";
 
 const initialState = {
@@ -10,6 +13,9 @@ const initialState = {
   isError: false,
   totalLength: 0,
   products: [],
+  singleloading:false,
+  singleerror:false,
+  singleproduct:{}
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,6 +38,21 @@ export const reducer = (state = initialState, action) => {
 
     case GET_PRODUCT_PAGES: {
       return { ...state, totalLength: payload };
+    }
+
+    case GET_SINGLE_PRODUCT_REQUEST: {
+      return { ...state, singleloading: true, singleerror: false };
+    }
+    case GET_SINGLE_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        singleloading: false,
+        singleerror: false,
+        singleproduct: payload,
+      };
+    }
+    case GET_SINGLE_PRODUCT_FAILURE: {
+      return { ...state, isLoading: true, isError: true };
     }
     default: {
       return state;

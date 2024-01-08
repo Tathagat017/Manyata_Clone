@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Image } from "@chakra-ui/react";
+import { Text, Image ,Button} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {useSelector,useDispatch} from "react-redux";
@@ -32,13 +32,13 @@ const ProfileDropDown = ({ title, color }) => {
             <p>To access account and manage orders</p>
             
               {isloggedin?
-            <button onClick={()=>{sessionStorage.removeItem("token");dispatch(logout());settoggle(!toggle)}}>Logout</button>
+           <Link> <button  onClick={()=>{sessionStorage.removeItem("token");dispatch(logout());settoggle(!toggle)}}>Logout</button></Link>
             :
-            <Link to="/login"><button>Login / SignUp</button></Link>  
+            <Link to="/login"><button >Login / SignUp</button></Link>  
             }
             
             <Link to="adminlogin">
-              <button>Admin LOGIN </button>
+              <button >Admin LOGIN </button>
             </Link>
             <Link to="orderplaced">Orders</Link>
             <Link to="/wishlist">Wishlist</Link>
@@ -132,7 +132,7 @@ const DIV = styled.div`
     border: 1px solid red;
     border-radius: 2px;
     padding: 5px 10px;
-    margin-right: 3.8rem;
+    margin-right: 0rem;
     align-content: left;
     /* text-decoration: none; */
     /* display: block; */

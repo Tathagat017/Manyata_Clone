@@ -33,7 +33,8 @@ import {
   addToCart,
 } from "./../../redux/CartReducer/Action";
 /////
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { addwishlist } from "../../redux/WishListReducer/Action";
 const Main = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
   width: 17vw;
@@ -46,13 +47,11 @@ const Main = styled.div`
   padding: 0;
   padding-bottom: 1vh;
   cursor: pointer;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  margin:auto;
   img {
     width: 17vw;
     height: 35vh;
     margin-top: 0;
-    /* border-radius: 5% 5% 5% 5%; */
     margin-bottom: 0;
   }
   .button-container {
@@ -76,12 +75,16 @@ const Main = styled.div`
     /* img:hover {
       width: 60vw;
     } */
+    .tohide{
+      .tohidee{
+      display:none
+    }
+  }
   }
   .product-letter {
-    font-size: 0.6rem;
     color: #272626;
-    line-height: 1rem;
     font-family: roboto;
+    text-align:start;
   }
   .price {
     color: #565656;
@@ -101,13 +104,13 @@ const Main = styled.div`
     position: relative;
   }
   .image-wrapper img {
-    z-index: 1;
+  
   }
   .image-wrapper .rating {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+    
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px;
     display: flex;
@@ -119,6 +122,11 @@ const Main = styled.div`
     width: 100%;
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+  .product-title{
+    color:grey;
+    text-align:start;
+  
   }
 `;
 
@@ -133,96 +141,15 @@ export const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  //   const handleCart = (product) => {
-  //     dispatch(addToCart(product));
-  //   };
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const CartTotal = ({ price }) => {
-    let originalStringPrice = price.split("").splice(4, price.length).join("");
-
-    //console.log(+originalStringPrice);
-    let cartTotal = +originalStringPrice * quantity;
-    return (
-      <h2 className="product-letter" style={{ fontSize: "3vh" }}>
-        {" "}
-        Subtotal: Rs {cartTotal}
-      </h2>
-    );
-  };
-
-  //add to cart
-  function handleAddToCart(product) {
-    // Your logic for adding the item to cart goes here
-    console.log(product);
-
-    // addToCart(product);
-    let originalStringPrice = product.discountedPrice
-      .split("")
-      .splice(4, product.discountedPrice.length)
-      .join("");
-
-    //console.log(+originalStringPrice);
-    let cartTotal = +originalStringPrice * quantity;
-    let productTocart = {
-      ...product,
-      ["quantity"]: quantity,
-      ["TotalPriceThisItemInCart"]: cartTotal,
+  const navigate=useNavigate();
+  //add to wishlist  
+  const handleaddwishlist = () => {
+      dispatch(addwishlist(product._id,'658dc10269d837c0b61367a3'));
     };
-    //check if the item is already present in the cart
-    let isPresent = false;
-
-    cart.length > 0 &&
-      cart.map((el) => {
-        if (el.id == productTocart.id) {
-          isPresent = true;
-          return toast({
-            title: "Item already in cart",
-            status: "info",
-            duration: 3000,
-            isClosable: true,
-            position: "top",
-            variant: "subtle",
-            bgColor: `cyan.500`,
-            color: "white",
-            size: "lg",
-          });
-        }
-      });
-
-    // cart.length > 0 &&
-    //   cart.map((el) => {
-    //     if (
-    //       el.id == productTocart.id &&
-    //       el.quantity !== productTocart.quantity
-    //     ) {
-    //       ModifyCartAction({ id: el.id, quantity: el.quantity });
-    //       console.log(cart);
-    //     }
-    //   });
-    // addToCart(productTocart);
-    isPresent == false && dispatch(AddToCartAction(productTocart));
-    //console.log(cart);
-    // Show a success toaster notification
-    isPresent == false &&
-      toast({
-        title: "Item added to cart",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-        variant: "subtle",
-        bgColor: `cyan.500`,
-        color: "white",
-        size: "lg",
-      });
-  }
-  if (isError) return <Box children="error" />;
+  //add to wishlist
+ 
   return (
-    <Box>
+    <Box  border={'0px solid red'}>
       <Main>
         <div className="Hover">
           <div className="image-wrapper">
@@ -234,36 +161,21 @@ export const ProductCard = ({ product }) => {
                 {product.rating} | {product.rating_Count}
               </b>
             </div>
-            <img src={product.image} className="product-image"></img>
+            <img onClick={()=> navigate(`/products/${product._id}`)} src={product.image} className="product-image" alt="error"></img>
           </div>
-          {/* <h3 className="product-title">{product.title}</h3> */}
-          <p className="product-letter">
-            <b>{product.brand}</b>
-          </p>
-          <div className="product-pricing">
-            <p className="product-letter orignal">
-              <span style={{ color: "red", textDecoration: "line-through" }}>
-                <span style={{ color: "#535665" }}>
-                  {product.originalPrice}
-                </span>
-                -
-              </span>
-            </p>
-            <p className="product-discount">{product.discount}</p>
-          </div>
-          <p className="product-letter price">
-            <b>{product.discountedPrice}</b>
-          </p>
-          {/* <p>{product.rating}</p> */}
-          <div className="button-container">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="add-to-wishlist" variant="outline" size={"md"}>
+          
+<div className="tohide">
+<Stack   direction={'column'} justifyContent={'flex-start'} spacing={'2'} pt={'1rem'}>
+<div className="tohidee">
+<Box textAlign={'start'}><b>{product.brand}</b></Box>
+<Box color={'grey'} textAlign={'start'}>{product.title}</Box>
+</div>
+<div className="button-container">
+<Button className="add-to-wishlist" variant="outline" size={"md"} onClick={()=>handleaddwishlist()}>
                 <span className="button-span">
                   <BsFillBookmarkHeartFill style={{ color: "lightcoral" }} />
                 </span>
               </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="outline">
                 <span
                   className="button-span"
@@ -272,102 +184,133 @@ export const ProductCard = ({ product }) => {
                   onClick={onOpen}
                 >
                   <BsFillCartFill style={{ color: "cornflowerblue" }} />
-                  <Drawer
-                    isOpen={isOpen}
-                    placement="right"
-                    onClose={onClose}
-                    finalFocusRef={btnRef}
-                    size={"md"}
-                  >
-                    <DrawerOverlay />
-                    <DrawerContent>
-                      <DrawerCloseButton />
-                      <DrawerHeader>Cart</DrawerHeader>
+                  </span>
+                  </Button>
+</div>
+<Box display={'flex'} justifyContent={'flex-start'} gap={'0.5rem'}>
+  <Box><b>Rs.{product.discountedPrice}</b></Box>
+  <Box color={'grey'} textDecoration={'line-through'}>Rs.{product.originalPrice}</Box>
+  <Box color={'red'} textDecoration={'line-through'}> ({product.discount}% OFF)</Box>
+</Box>
+</Stack>
+</div>
 
-                      <DrawerBody>
-                        <Flex
-                          direction={"column"}
-                          justifyContent={"space-between"}
-                          alignItems={"center"}
-                        >
-                          <Image
-                            src={product.image}
-                            w="50%"
-                            h={"40vh"}
-                            boxShadow="xl"
-                            padding={"1%"}
-                            alt="error"
-                          ></Image>
 
-                          <Text>
-                            <b>{product.title}</b>
-                          </Text>
-                          <Text>{product.discount}</Text>
-                          <Text>{product.description}</Text>
-                          <Text fontWeight={"500"}>
-                            <CartTotal price={product.discountedPrice} />
-                          </Text>
-                          <Flex
-                            alignItems={"center"}
-                            justifyContent={"space-evenly"}
-                            w={"80%"}
-                          >
-                            <motion.div whileTap={{ scale: 0.85 }}>
-                              <Button
-                                onClick={() => setQuantity((prev) => prev - 1)}
-                                variant="outline"
-                                colorScheme="blackAlpha"
-                                border={"2px solid black"}
-                                isDisabled={quantity === 1}
-                              >
-                                <AiOutlineMinus color="seagreen" />
-                              </Button>
-                            </motion.div>
-                            <Text>{quantity}</Text>
-                            <motion.div whileTap={{ scale: 0.85 }}>
-                              <Button
-                                onClick={() => setQuantity((prev) => prev + 1)}
-                                colorScheme="blackAlpha"
-                                variant="outline"
-                                border={"2px solid black"}
-                              >
-                                <BsPlusLg color="seagreen" />
-                              </Button>
-                            </motion.div>
-                          </Flex>
-                        </Flex>
-                      </DrawerBody>
 
-                      <DrawerFooter>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Button variant="outline" mr={3} onClick={onClose}>
-                            Cancel
-                          </Button>
-                        </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Button
-                            colorScheme="facebook"
-                            onClick={(e) => handleAddToCart(product)}
-                          >
-                            Add to Cart
-                          </Button>
-                        </motion.div>
-                      </DrawerFooter>
-                    </DrawerContent>
-                  </Drawer>
-                </span>
-              </Button>
-            </motion.div>
-          </div>
+
         </div>
       </Main>
     </Box>
   );
 };
-//style={{ color: "lightcoral" }}
+
+  // <div className="button-container">
+  //           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+  //             <Button className="add-to-wishlist" variant="outline" size={"md"}>
+  //               <span className="button-span">
+  //                 <BsFillBookmarkHeartFill style={{ color: "lightcoral" }} />
+  //               </span>
+  //             </Button>
+  //           </motion.div>
+  //           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+  //             <Button variant="outline">
+  //               <span
+  //                 className="button-span"
+  //                 ref={btnRef}
+  //                 colorScheme="teal"
+  //                 onClick={onOpen}
+  //               >
+  //                 <BsFillCartFill style={{ color: "cornflowerblue" }} />
+  //                 <Drawer
+  //                   isOpen={isOpen}
+  //                   placement="right"
+  //                   onClose={onClose}
+  //                   finalFocusRef={btnRef}
+  //                   size={"md"}
+  //                 >
+  //                   <DrawerOverlay />
+  //                   <DrawerContent>
+  //                     <DrawerCloseButton />
+  //                     <DrawerHeader>Cart</DrawerHeader>
+
+  //                     <DrawerBody>
+  //                       <Flex
+  //                         direction={"column"}
+  //                         justifyContent={"space-between"}
+  //                         alignItems={"center"}
+  //                       >
+  //                         <Image
+  //                           src={product.image}
+  //                           w="50%"
+  //                           h={"40vh"}
+  //                           boxShadow="xl"
+  //                           padding={"1%"}
+  //                           alt="error"
+  //                         ></Image>
+
+  //                         <Text>
+  //                           <b>{product.title}</b>
+  //                         </Text>
+  //                         <Text>{product.discount}</Text>
+  //                         <Text>{product.description}</Text>
+  //                         <Text fontWeight={"500"}>
+  //                           {/* <CartTotal price={product.discountedPrice} /> */}
+  //                           </Text>
+  //                           <Flex
+  //                             alignItems={"center"}
+  //                             justifyContent={"space-evenly"}
+  //                             w={"80%"}
+  //                           >
+  //                             <motion.div whileTap={{ scale: 0.85 }}>
+  //                               <Button
+  //                                 onClick={() => setQuantity((prev) => prev - 1)}
+  //                                 variant="outline"
+  //                                 colorScheme="blackAlpha"
+  //                                 border={"2px solid black"}
+  //                                 isDisabled={quantity === 1}
+  //                               >
+  //                                 <AiOutlineMinus color="seagreen" />
+  //                               </Button>
+  //                             </motion.div>
+  //                             <Text>{quantity}</Text>
+  //                             <motion.div whileTap={{ scale: 0.85 }}>
+  //                               <Button
+  //                                 onClick={() => setQuantity((prev) => prev + 1)}
+  //                                 colorScheme="blackAlpha"
+  //                                 variant="outline"
+  //                                 border={"2px solid black"}
+  //                               >
+  //                                 <BsPlusLg color="seagreen" />
+  //                               </Button>
+  //                             </motion.div>
+  //                           </Flex>
+  //                         </Flex>
+  //                       </DrawerBody>
+  
+  //                       <DrawerFooter>
+  //                         <motion.div
+  //                           whileHover={{ scale: 1.05 }}
+  //                           whileTap={{ scale: 0.95 }}
+  //                         >
+  //                           <Button variant="outline" mr={3} onClick={onClose}>
+  //                             Cancel
+  //                           </Button>
+  //                         </motion.div>
+  //                         <motion.div
+  //                           whileHover={{ scale: 1.05 }}
+  //                           whileTap={{ scale: 0.95 }}
+  //                         >
+  //                           <Button
+  //                             colorScheme="facebook"
+  //                             // onClick={(e) => handleAddToCart(product)}
+  //                           >
+  //                             Add to Cart
+  //                           </Button>
+  //                         </motion.div>
+  //                       </DrawerFooter>
+  //                     </DrawerContent>
+  //                   </Drawer>
+  //                 </span>
+  //               </Button>
+  //             </motion.div>
+  //           </div> 

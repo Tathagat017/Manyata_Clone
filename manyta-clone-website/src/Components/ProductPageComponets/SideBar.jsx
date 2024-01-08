@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
@@ -8,19 +8,20 @@ import {
   Text,
   Button,
   Flex,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import styled from "styled-components";
 import { BsFillStarFill } from "react-icons/bs";
 import { extendTheme } from "@chakra-ui/react";
+import { ProductContext } from "../../ContextApi/ProductContext";
 const MainLoco = styled.div`
-  width: 17vw;
-  height: 95vh;
-  overflow-y: auto;
-  margin-top: 5vh;
-  position: fixed;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-
+  width: 18%;
+    height: 90rem;
+      overflow-y: scroll;
+  margin-top: 5rem;
+position:relative;
+border:1px solid rgb(244, 241, 241);
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -60,73 +61,58 @@ const Main = styled.div`
   .discount {
     padding: 2.5%;
   }
+  .
 `;
 
-export const SideBar = ({ style }) => {
+export const SideBar = ({initialfilters,toggle,settoggle }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialGender = searchParams.getAll("gender");
-  const initialDiscountedPrice = searchParams.getAll("discountedPrice");
-  const initialDiscount = searchParams.getAll("discount_gte");
-  const initialitemType = searchParams.getAll("itemType");
-  const initalBrand = searchParams.getAll("brand");
-  const initialRating = searchParams.getAll("rating_gte");
+  const {setfilter,filters,togglefilter,settogglefilter}=React.useContext(ProductContext);
 
-
-  const [gender, setGender] = useState(initialGender || []);
-  const [item, setItem] = useState(initialitemType || []);
-  const [brand, setBrand] = useState(initalBrand || []);
-  const [rating, setRating] = useState(initialRating || []);
-  const [discount, setDiscount] = useState(initialDiscount || []);
-
-  //Gender selection
+//Gender selection
   const handleChangeGender = (e) => {
     console.log(e.target.value);
-    let newGender = [...gender];
+    let newGender = [...initialfilters.current.gender];
     const value = e.target.value;
     if (newGender.includes(value)) {
       newGender = newGender.filter((el) => el !== e.target.value);
     } else {
       newGender.push(value);
     }
-    //console.log("mew", newCategory);
-    setGender(newGender);
-    //console.log(category);
+   initialfilters.current.gender=newGender;
+   settoggle(!toggle);
   };
-
   //Category selection
   const handleChangeCategory = (e) => {
     console.log(e.target.value);
-    let newItemType = [...item];
+    let newItemType = [...initialfilters.current.itemType];
     const value = e.target.value;
     if (newItemType.includes(value)) {
       newItemType = newItemType.filter((el) => el !== e.target.value);
     } else {
       newItemType.push(value);
     }
-    //console.log("mew", newCategory);
-    setItem(newItemType);
-    //console.log(category);
+    initialfilters.current.itemType=newItemType;
+   settoggle(!toggle);
   };
-
+ 
   //Brand selection
   const handleChangeBrand = (e) => {
     console.log(e.target.value);
-    let newBrand = [...brand];
+    let newBrand = [...initialfilters.current.brand];
     const value = e.target.value;
     if (newBrand.includes(value)) {
       newBrand = newBrand.filter((el) => el !== e.target.value);
     } else {
       newBrand.push(value);
     }
-    //console.log("mew", newCategory);
-    setBrand(newBrand);
-    //console.log(category);
+    initialfilters.current.brand=newBrand;
+   settoggle(!toggle);
   };
 
   //rating selection
   const handleChangeRating = (e) => {
     console.log(e.target.value);
-    let newRating = [...rating];
+    let newRating = [...initialfilters.current.rating];
     const value = e.target.value;
     if (newRating.includes(value)) {
       newRating = newRating.filter(
@@ -136,46 +122,60 @@ export const SideBar = ({ style }) => {
       newRating.push(value.toString());
     }
     console.log("mew", newRating);
-    setRating(newRating);
-    //console.log(category);
+    initialfilters.current.rating=newRating;
+   settoggle(!toggle);
   };
 
   //discount selection
   const handleChangeDiscount = (e) => {
     console.log(e.target.value);
-    let newDiscount = [...discount];
-    const value = e.target.value;
-    if (newDiscount.includes(value)) {
-      newDiscount = newDiscount.filter((el) => el !== e.target.value);
-    } else {
-      newDiscount.push(value);
-    }
-    //console.log("mew", newCategory);
-    setDiscount(newDiscount);
-    // console.log("mew mew", discount);
+    // let newDiscount = initialfilters.current.discount;
+    // const value = e.target.value;
+    // if (newDiscount.includes(value)) {
+    //   newDiscount = newDiscount.filter((el) => el !== e.target.value);
+    // } else {
+    //   newDiscount.push(value);
+    // }
+    initialfilters.current.discount=e.target.value;
+   settoggle(!toggle);
   };
 
-  useEffect(() => {
-    let params = {
-      gender,
-      itemType: item,
-      brand: brand,
-      rating_gte: rating,
-      discount_gte: discount,
-      _page: searchParams.get("_page"),
-      _limit: 16,
-      
-    };
-    if(searchParams.get("q")){params["q"]=searchParams.get("q")}
-    setSearchParams(params);
-  }, [gender, item, brand, rating, discount]);
-  const { value } = style;
+const handlechangeprice=(e)=>{
+let newPrice=[...initialfilters.current.price];
+const value=e.target.value.split(",");
+// console.log(value.split(","));
+if (newPrice.includes(value[0])) {
+  newPrice = newPrice.filter((el) => el !== value[0]);
+} else {
+  newPrice.push(value[0]);
+}
+if (newPrice.includes(value[1])) {
+  newPrice = newPrice.filter((el) => el !== value[1]);
+} else {
+  newPrice.push(value[1]);
+}
+initialfilters.current.price=newPrice;
+settoggle(!toggle)
+}
+
+  // const { value } = style;
   return (
     <MainLoco>
       <Main>
         <h3>
           <b>Filter by</b>
         </h3>
+        <Button backgroundColor={'rgb(235,54,123)'} onClick={()=>{setSearchParams({});
+        initialfilters.current={
+          gender:[],
+          itemType:[],
+          brand:[],
+          rating:[],
+          discount:[],
+          discountedPrice:"",
+          price:[],
+        };settoggle(!toggle)
+        }}>Clear All Filters</Button>
         <div className="Gender">
           <p>Gender</p>
           <Stack spacing={1} direction={["column"]}>
@@ -184,7 +184,7 @@ export const SideBar = ({ style }) => {
               colorScheme="teal"
               onChange={handleChangeGender}
               value={"Men"}
-              isChecked={gender.includes("Men")}
+              isChecked={initialfilters.current.gender.includes("Men")}
             >
               Men
             </Checkbox>
@@ -193,7 +193,7 @@ export const SideBar = ({ style }) => {
               colorScheme="pink"
               value={"Women"}
               onChange={(e) => handleChangeGender(e)}
-              isChecked={gender.includes("Women")}
+              isChecked={initialfilters.current.gender.includes("Women")}
             >
               Women
             </Checkbox>
@@ -202,7 +202,7 @@ export const SideBar = ({ style }) => {
               colorScheme="red"
               value={"Kids"}
               onChange={(e) => handleChangeGender(e)}
-              isChecked={gender.includes("Kids")}
+              isChecked={initialfilters.current.gender.includes("Kids")}
             >
               Kids
             </Checkbox>
@@ -218,7 +218,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"T-shirt"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("T-shirt")}
+              isChecked={initialfilters.current.itemType.includes("T-shirt")}
             >
               T-Shirts
             </Checkbox>
@@ -227,7 +227,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"Trouser"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Trouser")}
+              isChecked={initialfilters.current.itemType.includes("Trouser")}
             >
               Trousers
             </Checkbox>
@@ -236,7 +236,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"Shoes"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Shoes")}
+              isChecked={initialfilters.current.itemType.includes("Shoes")}
             >
               Shoes
             </Checkbox>
@@ -245,7 +245,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"Watch"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Watch")}
+              isChecked={initialfilters.current.itemType.includes("Watch")}
             >
               Watches
             </Checkbox>
@@ -254,7 +254,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"Saree"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Saree")}
+              isChecked={initialfilters.current.itemType.includes("Saree")}
             >
               Saree
             </Checkbox>
@@ -263,7 +263,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"WesternDresses"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("WesternDresses")}
+              isChecked={initialfilters.current.itemType.includes("WesternDresses")}
             >
               Western Dress
             </Checkbox>
@@ -272,7 +272,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"Kurti"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("Kurti")}
+              isChecked={initialfilters.current.itemType.includes("Kurti")}
             >
               Kurti
             </Checkbox>
@@ -281,7 +281,7 @@ export const SideBar = ({ style }) => {
               colorScheme="purple"
               value={"BedRunners"}
               onChange={handleChangeCategory}
-              isChecked={item.includes("BedRunners")}
+              isChecked={initialfilters.current.itemType.includes("BedRunners")}
             >
               Bed Runners
             </Checkbox>
@@ -300,7 +300,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"Puma"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("Puma")}
+              isChecked={initialfilters.current.brand.includes("Puma")}
             >
               Puma
             </Checkbox>
@@ -309,7 +309,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"VASTRAMAY"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("VASTRAMAY")}
+              isChecked={initialfilters.current.brand.includes("VASTRAMAY")}
             >
               VASTRAMAY
             </Checkbox>
@@ -318,7 +318,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"Louis Philippe"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("Louis Philippe")}
+              isChecked={initialfilters.current.brand.includes("Louis Philippe")}
             >
               Louis Philippe
             </Checkbox>
@@ -327,7 +327,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"Anouk"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("Anouk")}
+              isChecked={initialfilters.current.brand.includes("Anouk")}
             >
               Anouk
             </Checkbox>
@@ -336,7 +336,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"Roadster"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("Roadster")}
+              isChecked={initialfilters.current.brand.includes("Roadster")}
             >
               Roadster
             </Checkbox>
@@ -345,7 +345,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"Saree mall"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("Saree mall")}
+              isChecked={initialfilters.current.brand.includes("Saree mall")}
             >
               Saree mall
             </Checkbox>
@@ -354,7 +354,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"KALINI"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("KALINI")}
+              isChecked={initialfilters.current.brand.includes("KALINI")}
             >
               KALINI
             </Checkbox>
@@ -363,7 +363,7 @@ export const SideBar = ({ style }) => {
               colorScheme="orange"
               value={"boAt"}
               onChange={handleChangeBrand}
-              isChecked={brand.includes("boAt")}
+              isChecked={initialfilters.current.brand.includes("boAt")}
             >
               boAt
             </Checkbox>
@@ -382,7 +382,7 @@ export const SideBar = ({ style }) => {
               colorScheme="blackAlpha"
               value={4}
               onChange={handleChangeRating}
-              isChecked={rating.includes("4")}
+              isChecked={initialfilters.current.rating.includes("4")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -396,7 +396,7 @@ export const SideBar = ({ style }) => {
               colorScheme="blackAlpha"
               value={3}
               onChange={handleChangeRating}
-              isChecked={rating.includes("3")}
+              isChecked={initialfilters.current.rating.includes("3")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -409,7 +409,7 @@ export const SideBar = ({ style }) => {
               colorScheme="blackAlpha"
               value={2}
               onChange={handleChangeRating}
-              isChecked={rating.includes("2")}
+              isChecked={initialfilters.current.rating.includes("2")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -421,7 +421,7 @@ export const SideBar = ({ style }) => {
               colorScheme="blackAlpha"
               value={1}
               onChange={handleChangeRating}
-              isChecked={rating.includes("1")}
+              isChecked={initialfilters.current.rating.includes("1")}
             >
               <Flex gap={1.5}>
                 <BsFillStarFill color="salmon" />
@@ -435,13 +435,13 @@ export const SideBar = ({ style }) => {
             <b>Price</b>
           </p>
           <Stack spacing={1} direction={["column"]}>
-            <Checkbox size="sm" colorScheme="green">
+            <Checkbox isChecked={initialfilters.current.price.includes("200")&&initialfilters.current.price.includes("2000")} onChange={handlechangeprice} value={[200,2000]} size="sm" colorScheme="green">
               Rs.200 - Rs.2000
             </Checkbox>
-            <Checkbox size="sm" colorScheme="green">
+            <Checkbox isChecked={initialfilters.current.price.includes("2001")&&initialfilters.current.price.includes("4500")} onChange={handlechangeprice} value={[2001,4500]} size="sm" colorScheme="green">
               Rs.2001 - Rs.4500
             </Checkbox>
-            <Checkbox size="sm" colorScheme="green">
+            <Checkbox isChecked={initialfilters.current.price.includes("4501")&&initialfilters.current.price.includes("8000")} onChange={handlechangeprice} value={[4501,8000]} size="sm" colorScheme="green">
               Rs.4501 - Rs.8000
             </Checkbox>
             <Button variant={"unstyled"} color={"green.900"}>
@@ -453,81 +453,84 @@ export const SideBar = ({ style }) => {
           <p>
             <b>Discount</b>
           </p>
+          <RadioGroup defaultValue={Number(initialfilters.current.discount)}>
           <Stack spacing={1} direction={["column"]}>
-            <Checkbox
+          
+            <Radio
               size="sm"
               colorScheme="blackAlpha"
               value={10}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("10")}
             >
               10% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="red"
               value={20}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("20")}
+              isChecked={initialfilters.current.discount=="20"}
             >
               20% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="blackAlpha"
               value={30}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("30")}
+              isChecked={initialfilters.current.discount.includes=="30"}
             >
               30% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="red"
               value={40}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("40")}
+              isChecked={initialfilters.current.discount.includes=="40"}
             >
               40% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="blackAlpha"
               value={50}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("50")}
+              isChecked={initialfilters.current.discount.includes=="50"}
             >
               50% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="red"
               value={60}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("60")}
+              isChecked={initialfilters.current.discount.includes=="60"}
             >
               60% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="blackAlpha"
               value={"70"}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes("70")}
+              isChecked={initialfilters.current.discount.includes=="70"}
             >
               70% and Above
-            </Checkbox>
-            <Checkbox
+            </Radio>
+            <Radio
               size="sm"
               colorScheme="red"
               value={80}
               onChange={handleChangeDiscount}
-              isChecked={discount.includes(80)}
+              isChecked={initialfilters.current.discount.includes=="80"}
             >
               80% and Above
-            </Checkbox>
+            </Radio>
+            
             <Button variant={"unstyled"}>+3 More</Button>
           </Stack>
+          </RadioGroup>
         </div>
       </Main>
     </MainLoco>

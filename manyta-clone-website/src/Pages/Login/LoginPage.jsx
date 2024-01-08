@@ -14,7 +14,6 @@ import {
   BsFillStarFill,
   BsPlusLg,
 } from "react-icons/bs";
-import { UserPage } from "./UserPage";
 const LOGINWRAP = styled.div`
   padding: 5%;
   padding-left: 0;
@@ -38,9 +37,9 @@ export const LoginPage = () => {
     window.location.reload();
   };
 
-  if (isAuth) {
-    return <UserPage />;
-  }
+  // if (isAuth) {
+  //   return <UserPage />;
+  // }
   // return <LoginForm />;
   return (
     <div>

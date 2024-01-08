@@ -14,42 +14,54 @@ import { ProductsPage } from "../Pages/Product/ProductPage";
 import AdminAdd from "./../Pages/Admin/AdminAdd";
 import Payment from "../Components/PaymentPageComponents/Address";
 import { NewloginPage } from "../Pages/Login/NewLoginPage";
+import { ProductProvider } from "../ContextApi/ProductContext";
 
 export const AllRoutes = () => {
   return (
     <Routes>
       {/* Provide all Routes here */}
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={
+      <ProductProvider>
+      <HomePage />
+      </ProductProvider>
+      } />
 
       <Route
         path="/cart"
         element={
-          <PrivateRoute>
-            <CartPage />
-          </PrivateRoute>
+          <CartPage />
+          // <PrivateRoute>
+          //   <CartPage />
+          // </PrivateRoute>
         }
       />
       <Route path="/login" element={<NewloginPage />} />
       <Route
         path="/wishlist"
         element={
-          <PrivateRoute>
-            <WishListPage />
-          </PrivateRoute>
+          <WishListPage />
+          // <PrivateRoute>
+          //   <WishListPage />
+          // </PrivateRoute>
         }
       />
       <Route
         path="/products/:id"
         element={
-          <PrivateRoute>
-            <SingleProductPage />
-          </PrivateRoute>
+          <SingleProductPage />
+          // <PrivateRoute>
+          //   <SingleProductPage />
+          // </PrivateRoute>
         }
       ></Route>
 
       <Route path="/orderplaced" element={<OrderPlacedPage />} />
       <Route path="/payments" element={<Payment />} />
-      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/products" element={
+       <ProductProvider>
+      <ProductsPage />
+      </ProductProvider>
+      } />
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/adminhome" element={<AdminHome />} />

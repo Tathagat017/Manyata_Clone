@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/ProductReducer/Action";
 import { ProductCard } from "./ProductCard";
@@ -13,33 +13,14 @@ import {
 } from "@chakra-ui/react";
 import { CartModel } from "./CartModal";
 import Pagination from "./ProductPagination";
-const Main = styled.div`
-  width: 75vw;
-  height: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+import { ProductContext } from "../../ContextApi/ProductContext";
 
-  margin-left: 18vw;
-  gap: 1.4vw;
-  transition: 0.5s ease;
-  padding: 2%;
-  overflow: hidden;
-  box-sizing: border-box;
-
-  .Hover {
-    .Hover:hover {
-      transform: scale(1.01);
-      height: 65.8vh;
-    }
-  }
-`;
-export const ProductList = () => {
+export const ProductList = ({initialfilters,toggle,settoggle}) => {
   const { products, isLoading, totalLength } = useSelector(
     (state) => state.ProductReducer
   );
-
   const { cart } = useSelector((state) => state.CartReducer);
-
+  const {setfilter,filters,togglefilter,settogglefilter}=React.useContext(ProductContext);
   const dispatch = useDispatch();
   const [searchParams, setSeachParams] = useSearchParams();
   const location = useLocation();
@@ -47,51 +28,54 @@ export const ProductList = () => {
   const [page, setPage] = useState(initialPage || 1);
   const limitToshow = 16;
   const totalPages = Math.ceil(totalLength / limitToshow);
-  // const [page, setPage] = useState(0);
-  console.log(cart);
 
+ 
+
+  // const [page, setPage] = useState(0);
+  
   //pagination
   const handlePage = (page) => {
     setPage(page);
-    //console.log("page", page);
-    setSeachParams({
-      gender: searchParams.getAll("gender"),
-      itemType: searchParams.getAll("itemType"),
-      brand: searchParams.getAll("brand"),
-      rating_gte: searchParams.getAll("rating_gte"),
-      discount_gte: searchParams.getAll("discount_gte"),
-      _page: page,
-      _limit: 16,
-      q:searchParams.get("q")
-    });
-
-    // console.log(searchParams.getAll("_page"));
+ // console.log(searchParams.getAll("_page"));
     // console.log(searchParams.getAll("gender"));
   };
-
+  const funcfilterobjvalidparams=()=>{
+    let invalidfilters=initialfilters.current;
+    let validfilters={};
+    if(searchParams.get("q")){
+      validfilters.q=searchParams.get("q");
+      for(let i in invalidfilters){
+        if(invalidfilters[i].length!==0){
+          validfilters[i]=invalidfilters[i];
+        }
+        
+      }
+      setSeachParams(validfilters);
+    }
+    else{
+      for(let i in invalidfilters){
+        if(i!=="q"){
+        if(invalidfilters[i].length!==0){
+          validfilters[i]=invalidfilters[i];
+        }
+      }
+      }
+      setSeachParams(validfilters);
+    }
+    //setfilter(validfilters);
+    return validfilters;
+  };
   useEffect(() => {
-    let paramObj = {
-      params: {
-        gender: searchParams.getAll("gender"),
-        itemType: searchParams.getAll("itemType"),
-        brand: searchParams.getAll("brand"),
-        rating_gte: searchParams.getAll("rating_gte"),
-        discount_gte: searchParams.getAll("discount_gte"),
-        _page: searchParams.get("_page"),
-        _limit: 16,
-        q:searchParams.get("q")
-      },
-    };
-    console.log(paramObj);
+   let paramObj= funcfilterobjvalidparams();
+   // console.log(paramObj,"paramObj");
     dispatch(getProducts(paramObj));
-    // console.log(products.length);
-  }, [location.search]);
-  //console.log(location.search);
+  }, [toggle]);
 
   return (
     !isLoading && (
-      <ProductDiv>
-        <Main data-testid="product-list">
+      <Box w={'80%'} mt={'6rem'}   border={'0px solid red'} overflow={'hidden'} h={'100%'}>
+      <Box  display={'grid'} gridTemplateColumns={'repeat(4,1fr)'} gap={'1.5rem'}>
+      
           {products.length > 0 &&
             products?.map((el) => {
               return (
@@ -101,38 +85,15 @@ export const ProductList = () => {
                 </div>
               );
             })}
-        </Main>
-        <PaginationWrapper>
-          <Pagination
-            totalPages={totalPages}
-            currentPage={page}
-            handlePageChange={handlePage}
-          />
-        </PaginationWrapper>
-        <img
-          src="./extraFoot.jpg"
-          style={{
-            width: "100%",
-            zIndex: "9",
-            position: "absolute",
-            marginRight: "30vw",
-            marginLeft: "-10vh",
-          }}
-        ></img>
-      </ProductDiv>
+      </Box>
+        <Box w={'30vw'} m={'auto'} display={'block'}>
+        <Pagination
+          totalPages={totalPages}
+          currentPage={page}
+          handlePageChange={handlePage}
+        />
+      </Box>
+      </Box>
     )
   );
 };
-const ProductDiv = styled.div`
-  display: block;
-  margin: auto;
-  overflow: hidden !important;
-  padding: 1%;
-`;
-
-const PaginationWrapper = styled.div`
-  width: 30vw;
-  margin: auto;
-  display: block;
-  padding: 1%;
-`;

@@ -9,11 +9,12 @@ import {
   VisuallyHidden,
   chakra,
   useColorModeValue,
-  Divider,
+  Divider,Button,Grid,GridItem
 } from "@chakra-ui/react";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import styled from "styled-components";
-
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { FaApple } from "react-icons/fa";
 // import AppStoreBadge from '@/components/AppStoreBadge';
 // import PlayStoreBadge from '@/components/PlayStoreBadge';
 
@@ -54,9 +55,10 @@ export default function LargeWithAppLinksAndSocial() {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
+      mt={'2rem'}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+        <Grid  gridTemplateColumns={'15% 15% 15% 55%'} gap={4}>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
             <Link href={"#"}>About Us</Link>
@@ -80,12 +82,26 @@ export default function LargeWithAppLinksAndSocial() {
             <Link href={"#"}>Law Enforcement</Link>
           </Stack>
 
-          <Stack align={"flex-start"}>
+          <Stack align={"flex-start"} border={'0px solid green'} width={'100%'}>
             <ListHeader>Install App</ListHeader>
-            {/* <AppStoreBadge />
-            <PlayStoreBadge /> */}
+            <Stack direction={'row'}>
+              <Button  border={'0px solid blue'} fontSize={'30px'} backgroundColor={"black"}  color={"white"} _hover={{backgroundColor:'rgb(235,54,123)'}} maxHeight={'auto'} minHeight={'50px'}  leftIcon={<IoLogoGooglePlaystore />} >
+                <Box display={'grid'} gridTemplateRows={'35% 35%'} height={'90%'} my={'1rem'}  textAlign={'start'} border={'0px solid red'}>
+                <Text fontSize={'12px'} border={'0px solid green'}>Get it on</Text>
+                <Text fontSize={'21px'}  border={'0px solid red '}>Google Play</Text>                  
+                </Box>
+                
+              </Button>
+              <Button  border={'0px solid blue'} fontSize={'30px'} backgroundColor={"black"}  color={"white"} _hover={{backgroundColor:'rgb(235,54,123)'}} maxHeight={'auto'} minHeight={'50px'}  leftIcon={<FaApple />} >
+                <Box display={'grid'} gridTemplateRows={'35% 35%'} height={'90%'} my={'1rem'}  textAlign={'start'} border={'0px solid red'}>
+                <Text fontSize={'12px'} border={'0px solid green'}>Download on The</Text>
+                <Text fontSize={'21px'}  border={'0px solid red '}>App Store</Text>                  
+                </Box>
+                
+              </Button>
+            </Stack>
           </Stack>
-        </SimpleGrid>
+        </Grid>
       </Container>
 
       <Box
@@ -338,8 +354,3 @@ export default function LargeWithAppLinksAndSocial() {
     </Box>
   );
 }
-
-const Foot = styled.div`
-  margin-top: 20px;
-  height: 300px;
-`;

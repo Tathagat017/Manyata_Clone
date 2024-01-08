@@ -28,8 +28,8 @@ React.useEffect(()=>{
     checklogin.current=null;
 },[loading])
 return (
-    <Box  w={"50%"} backgroundColor={'rgb(255,222,222)'} padding={'4%'} paddingTop={'5%'} border={'px solid blue'} margin={'auto'}>
-        <HStack w={'100%'} border={'2px solid brown'} justifyContent={'space-evenly'}>
+    <Box  w={"50%"} backgroundColor={'rgb(255,222,222)'} padding={'4%'} paddingTop={'5%'} border={'0px solid blue'} margin={'auto'}>
+        <HStack w={'100%'} border={'0px solid brown'} justifyContent={'space-evenly'}>
     <Box p={'0.3rem'} _hover={{backgroundColor:"pink",color:"green.400",cursor:"pointer"}} onClick={()=>{setloading(true);
      setTimeout(()=>{
         setchecksignuppage(false);setloading(false);

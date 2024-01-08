@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Grid, HStack, Image, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, HStack, Image, Input, Select, Text } from "@chakra-ui/react";
 import { Link as MyLink } from "react-router-dom";
 import DropDown from "./DropDown";
 import logo from "../Data/Images/mlogo.jpg";
@@ -15,16 +15,16 @@ const navigate=useNavigate();
 const location=useLocation();
 
 const setsearch=(val)=>{
-  let obj={};
-if(searchparams.get("_page")){
-  obj["_page"]=searchparams.get("_page");
-}
-if(searchparams.get("_limit")){
-  obj["_limit"]=searchparams.get("_limit");
-}
-  obj["q"]=val;
-  // setvalue(val);
- setsearchparams(obj);
+   let obj={};
+// if(searchparams.get("_page")){
+//   obj["_page"]=searchparams.get("_page");
+// }
+// if(searchparams.get("_limit")){
+//   obj["_limit"]=searchparams.get("_limit");
+// }
+   obj["q"]=val;
+if(val===""){setsearchparams({})}
+ else if(val!==""){setsearchparams(obj);}
 console.log("hellooooooo",val);
 }
 const handlechange=(e)=>{
@@ -35,16 +35,15 @@ const debounce=useDebounce(handlechange,4000);
   return (
     <DIV>
       <Flex
-        as="header"
-        position="fixed"
+        
+       
         className="nav"
         w="100%"
-        mt={"-1vh"}
         bg="white"
         alignContent={"center"}
         justifyContent="space-around"
         alignItems={"center"}
-        p="10px 0"
+       p={'0.5rem 0rem'}
       >
         <HStack>
           <MyLink to="/">
@@ -77,7 +76,7 @@ const debounce=useDebounce(handlechange,4000);
             </div>
           </HStack>
         </HStack>
-        <HStack>
+        <HStack w={'30%'}>
           <Input
             w={"16vw"}
             h="2.5rem"
@@ -90,6 +89,11 @@ const debounce=useDebounce(handlechange,4000);
 onClick={()=>{if(location.pathname!=="/products"){navigate("/products")}}}
 onChange={(e)=>{debounce(e.target.value)}}
           />
+          <Select w={'30%'}>
+            <option value="">Select Search Type First</option>
+            <option value="brand">Brand</option>
+            <option value="itemType">Category</option>
+          </Select>
         </HStack>
         <HStack justifyContent={"space-evenly"} gap="20px">
           <Box>
@@ -136,6 +140,8 @@ export default Navbar;
 const DIV = styled.div`
   .nav {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    z-index: 999999999999;
   }
+ position:fixed;
+ width:100%;
+ z-index:1
 `;
